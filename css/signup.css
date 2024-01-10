@@ -1,0 +1,25 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#fon {
+	position: fixed;
+	top: -20px;
+	left: -20px;
+	width: 103%;
+	filter: invert(80%);
+	z-index: -1;
+}
+
+#auth {
+	position: absolute;
+	left: 50%;
+	top: 300px;
+	width: 800px;
+	height: 170px;
+	margin: 0px 0px 0px -400px;
+	background: #1c1c1c;
+	border-radius: 20px;
+}
