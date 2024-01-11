@@ -4,6 +4,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+/*фон*/
 #fon {
 	position: fixed;
 	top: -20px;
@@ -13,13 +14,140 @@ body {
 	z-index: -1;
 }
 
+/*блок с аунтификацией*/
 #auth {
 	position: absolute;
 	left: 50%;
 	top: 300px;
-	width: 800px;
-	height: 170px;
-	margin: 0px 0px 0px -400px;
+	width: 320px;
+	margin: 0px 0px 0px -170px;
+	padding: 20px;
 	background: #1c1c1c;
 	border-radius: 20px;
+	text-align: center;
 }
+
+/*надпись "Аунтификация"*/
+#auth-label {
+	color: #ffffff;
+	font-size: 25px;
+	font-weight: 400px;
+}
+
+/*логин*/
+#login {
+	width: 300px;
+	height: 35px;
+	margin: 20px 0px;
+	padding: 5px 10px;
+	border: 2px solid #2e2e2e;
+	border-radius: 10px;
+	background-color: #2e2e2e;
+	color: #bdbdbd;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	outline:none;
+	transition: 0.3s;
+}
+
+/*надпись "логин"*/
+#login-label {
+	position: absolute;
+	width: 80px;
+	top: 83px;
+	left: 20px;
+	border-radius: 10px;
+	color: #bdbdbd;
+	font-size: 16px;
+	transition: 0.3s;
+}
+
+
+/*пароль*/
+#password {
+	width: 300px;
+	height: 35px;
+	left: 35px;
+	margin: 5px 0px;
+	padding: 5px 10px;
+	border: 2px solid #2e2e2e;
+	border-radius: 10px;
+	background-color: #2e2e2e;
+	color: #bdbdbd;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	outline:none;
+	transition: 0.3s;
+}
+
+/*надпись "Пароль"*/
+#password-label {
+	position: absolute;
+	top: 160px;
+	left: 35px;
+	padding: 0px;
+	border-radius: 10px;
+	color: #bdbdbd;
+	font-size: 16px;
+	transition: 0.3s;
+}
+
+
+/*пароль*/
+#second-password {
+	width: 300px;
+	height: 35px;
+	margin: 20px 0px;
+	padding: 5px 10px;
+	border: 2px solid #2e2e2e;
+	border-radius: 10px;
+	background-color: #2e2e2e;
+	color: #bdbdbd;
+	font-size: 25px;
+	outline:none;
+	transition: 0.3s;
+}
+
+/*надпись "Пароль"*/
+#second-password-label {
+	position: absolute;
+	top: 230px;
+	left: 35px;
+	border-radius: 10px;
+	color: #bdbdbd;
+	font-size: 20px;
+	font-weight: 600;
+	transition: 0.3s;
+}
+
+/*кнопка авторизация*/
+#auth-btn {
+	width: 323px;
+	margin: 10px 0px;
+	padding: 10px;
+	border: 2px solid #ffffff;
+	border-radius: 10px;
+	background-color: #ffffff;
+	color:  #1c1c1c;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+#auth-btn:hover {
+	background-color: #1c1c1c;
+	color:  #ffffff;
+}
+
+/*переход по ссылке*/
+#redirect-signup {
+	color: #bdbdbd;
+	font-size: 18px;
+}
+
+/*ссылка на регистрацию*/
+#redirect-signup-link {
+	color: #ffffff;
+	font-size: 20px;

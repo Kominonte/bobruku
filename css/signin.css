@@ -4,6 +4,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+/*фон*/
 #fon {
 	position: fixed;
 	top: -20px;
@@ -13,6 +14,7 @@ body {
 	z-index: -1;
 }
 
+/*блок с аунтификацией*/
 #auth {
 	position: absolute;
 	left: 50%;
@@ -25,35 +27,122 @@ body {
 	text-align: center;
 }
 
+/*надпись "Аунтификация"*/
 #auth-label {
-	margin: 20px;
 	color: #ffffff;
 	font-size: 25px;
 	font-weight: 400px;
 }
 
+/*логин*/
 #login {
 	width: 300px;
 	height: 35px;
+	margin: 20px 0px;
 	padding: 5px 10px;
-	border: none;
+	border: 2px solid #2e2e2e;
 	border-radius: 10px;
 	background-color: #2e2e2e;
 	color: #bdbdbd;
 	font-size: 25px;
 	outline:none;
+	transition: 0.3s;
 }
+
+/*надпись "логин"*/
 #login-label {
 	position: absolute;
-	top: 40px;
+	top: 80px;
+	left: 35px;
+	border-radius: 10px;
 	color: #bdbdbd;
 	font-size: 20px;
 	font-weight: 600;
+	transition: 0.3s;
+}
+
+#login:focus {
+	border: 2px solid #ffffff;
+	background-color: #1c1c1c;
 }
 
 #login:focus ~ #login-label {
+	top: 56px;
+	padding: 0px 5px;
+	background-color: #1c1c1c;
+	color: #ffffff;
+}
+
+/*пароль*/
+#password {
+	width: 300px;
+	height: 35px;
+	margin: 5px 0px;
+	padding: 5px 10px;
+	border: 2px solid #2e2e2e;
+	border-radius: 10px;
+	background-color: #2e2e2e;
+	color: #bdbdbd;
+	font-size: 25px;
+	outline:none;
+	transition: 0.3s;
+}
+
+/*надпись "Пароль"*/
+#password-label {
 	position: absolute;
-	color: red;
+	top: 155px;
+	left: 35px;
+	border-radius: 10px;
+	color: #bdbdbd;
+	font-size: 20px;
+	font-weight: 600;
+	transition: 0.3s;
+}
+
+#password:focus {
+	border: 2px solid #ffffff;
+	background-color: #1c1c1c;
+}
+
+#password:focus ~ #password-label {
+	top: 131px;
+	padding: 0px 5px;
+	background-color: #1c1c1c;
+	color: #ffffff;
+}
+
+/*кнопка авторизация*/
+#auth-btn {
+	width: 323px;
+	margin: 10px 0px;
+	padding: 10px;
+	border: 2px solid #ffffff;
+	border-radius: 10px;
+	background-color: #ffffff;
+	color:  #1c1c1c;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+#auth-btn:hover {
+	background-color: #1c1c1c;
+	color:  #ffffff;
+}
+
+/*переход по ссылке*/
+#redirect-signup {
+	color: #bdbdbd;
+	font-size: 18px;
+}
+
+/*ссылка на регистрацию*/
+#redirect-signup-link {
+	color: #ffffff;
+	font-size: 20px;
 }
 
 

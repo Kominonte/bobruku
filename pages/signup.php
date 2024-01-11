@@ -14,8 +14,20 @@
 	<img id="fon" src="/assets/background/fon1.jpeg">
 
 	<div id="auth">
-		<
+		<span id="auth-label"> Регистрация </span><br>
+		<form>
+			<input id="login" type="text" name="login"><br>
+			<label id="login-label"> Логин </label>
+			<input id="password" type="password" name="password"><br>
+			<label id="password-label"> Пароль </label>
+			<input id="second-password" type="password" name="secondPassword"><br>
+			<label id="second-password-label"> Подтвердите пароль </label>
+			<button id="auth-btn"> Зарегистрироваться </button><br>
+			<span id="redirect-signup"> Уже есть аккаунт ?</span> 
+			<a id="redirect-signup-link" href="signup.php">Авторизироваться</a>
+		</form>
 	</div>
+	<script type="text/javascript"  src="/js/main.js"></script>
 </body>
 </html>
  

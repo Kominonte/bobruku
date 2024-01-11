@@ -14,15 +14,17 @@
 	<img id="fon" src="/assets/background/fon1.jpeg">
 
 	<div id="auth">
+		<span id="auth-label"> Авторизация </span><br>
 		<form>
-			<span id="auth-label"> Авторизация </span><br>
 			<input id="login" type="text" name="login"><br>
 			<label id="login-label"> Логин </label>
-			<input  class="input" type="password" name="password"><br>
-			<label class="label"> Пароль </label>
+			<input id="password" type="password" name="password"><br>
+			<label id="password-label"> Пароль </label>
 			<button id="auth-btn"> Войти </button><br>
-			<span> Нету аккаунта ?</span> <a href="signup.php">Зарегистрироваться</a>
+			<span id="redirect-signup"> Нету аккаунта ?</span> 
+			<a id="redirect-signup-link" href="signup.php">Зарегистрироваться</a>
 		</form>
 	</div>
+	<script type="text/javascript"  src="/js/main.js"></script>
 </body>
 </html>

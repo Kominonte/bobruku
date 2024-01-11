@@ -17,5 +17,6 @@
 		<p id="welcome-text">Прежде чем увидить снарягу клана вам надо</p><br>
 		<a id="link-auth" href="pages/signin.php">авторизоваться</a>
 	</div>
+	<script type="text/javascript"  src="/js/main.js"></script>
 </body>
 </html>
