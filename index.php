@@ -1,3 +1,8 @@
+<?php 
+	require_once("vendor/connect.php");
+	require_once("vendor/core.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

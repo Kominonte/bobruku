@@ -1,3 +1,8 @@
+<?php 
+	require_once("../vendor/connect.php");
+	require_once("../vendor/core.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +20,36 @@
 
 	<div id="auth">
 		<span id="auth-label"> Авторизация </span><br>
-		<form>
-			<input id="login" type="text" name="login"><br>
-			<label id="login-label"> Логин </label>
-			<input id="password" type="password" name="password"><br>
-			<label id="password-label"> Пароль </label>
-			<button id="auth-btn"> Войти </button><br>
+		<form action="../vendor/core.php" method="POST">
+			<div class="input-field-div">
+				<input id="login" class="input-field" type="text" name="login" required>
+				<label class="input-field-placeholder">Логин</label>
+
+			<?php if($_SESSION['errors'] == 10){ ?>
+				<label class="errors">Введите логин!</label>
+				<style type="text/css">#login{border: 2px solid #fc4747;}</style>
+
+			<?php } if($_SESSION['errors'] == 15){ ?>
+				<label class="errors">Аккаунта с таким логином не существует!</label>
+				<style type="text/css">#login{border: 2px solid #fc4747;}</style>
+			<?php } ?>
+			</div>
+
+			<div class="input-field-div">
+				<input id="password" class="input-field" type="password" name="password" required>
+				<label class="input-field-placeholder">Пароль</label>
+
+			<?php if($_SESSION['errors'] == 11){ ?>
+				<label class="errors">Введите пароль!</label>
+				<style type="text/css">#password{border: 2px solid #fc4747;}</style>
+
+			<?php } if($_SESSION['errors'] == 13){ ?>
+				<label class="errors">Неверный пароль</label>
+				<style type="text/css">#password{border: 2px solid #fc4747;}</style>
+			<?php } ?>
+			</div>
+			<?php echo $_SESSION['errors']; ?>
+			<button id="auth-btn" type="submit" name="signin-btn"> Войти </button><br>
 			<span id="redirect-signup"> Нету аккаунта ?</span> 
 			<a id="redirect-signup-link" href="signup.php">Зарегистрироваться</a>
 		</form>

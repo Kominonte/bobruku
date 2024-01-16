@@ -34,82 +34,62 @@ body {
 	font-weight: 400px;
 }
 
-/*логин*/
-#login {
+/*div для групировки input + label*/
+.input-field-div {
+	width: 300px;
+	position: relative;
+}
+
+/*поле ввода*/
+.input-field {
+	margin: 10px 0px 10px 0px;
 	width: 300px;
 	height: 35px;
-	margin: 20px 0px;
-	padding: 5px 10px;
+	padding: 3px 10px;
 	border: 2px solid #2e2e2e;
+	outline: none;
 	border-radius: 10px;
 	background-color: #2e2e2e;
-	color: #bdbdbd;
-	font-size: 25px;
-	outline:none;
-	transition: 0.3s;
-}
-
-/*надпись "логин"*/
-#login-label {
-	position: absolute;
-	top: 80px;
-	left: 35px;
-	border-radius: 10px;
+	appearance: none;
 	color: #bdbdbd;
 	font-size: 20px;
-	font-weight: 600;
 	transition: 0.3s;
 }
 
-#login:focus {
+/*поле ввода в фокусе*/
+.input-field:focus {
 	border: 2px solid #ffffff;
-	background-color: #1c1c1c;
-}
-
-#login:focus ~ #login-label {
-	top: 56px;
-	padding: 0px 5px;
 	background-color: #1c1c1c;
 	color: #ffffff;
 }
 
-/*пароль*/
-#password {
-	width: 300px;
-	height: 35px;
-	margin: 5px 0px;
-	padding: 5px 10px;
-	border: 2px solid #2e2e2e;
-	border-radius: 10px;
-	background-color: #2e2e2e;
-	color: #bdbdbd;
-	font-size: 25px;
-	outline:none;
-	transition: 0.3s;
-}
-
-/*надпись "Пароль"*/
-#password-label {
+/* плейсхолдер */
+.input-field-placeholder {
+	display: block;
 	position: absolute;
-	top: 155px;
-	left: 35px;
-	border-radius: 10px;
+	top: 20px;
+	left: 10px;
 	color: #bdbdbd;
 	font-size: 20px;
-	font-weight: 600;
+	pointer-events: none;
 	transition: 0.3s;
 }
 
-#password:focus {
-	border: 2px solid #ffffff;
-	background-color: #1c1c1c;
-}
-
-#password:focus ~ #password-label {
-	top: 131px;
+/* тут делаем так, что бы текст смещался в верх и не возвращался при наличии данных в поле */
+.input-field:focus + .input-field-placeholder,
+.input-field:not(:focus):valid + .input-field-placeholder{
+	top: -3px;
 	padding: 0px 5px;
+	font-size: 18px;
+	border-radius: 5px;
 	background-color: #1c1c1c;
 	color: #ffffff;
+}
+
+.errors {
+	color: #fc4747;
+	font-size: 18px;
+	font-weight: 600;
 }
 
 /*кнопка авторизация*/
