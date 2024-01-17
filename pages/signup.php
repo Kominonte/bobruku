@@ -26,13 +26,13 @@
 				<label class="input-field-placeholder">Логин</label>
 
 			<?php if($_SESSION['errors'] == 10){ ?>
-				<label class="errors">Введите логин!</label>
-				<style type="text/css">#login{border: 2px solid #fc4747;}</style>
-			<?php } 
+					<label class="errors">Введите логин!</label>
+					<style type="text/css">#login{border: 2px solid #fc4747;}</style>
+			<?php unset($_SESSION['errors']); } 
 				  if($_SESSION['errors'] == 14){ ?>
-				<label class="errors">Аккаунт с таким логином уже существует!</label>
-				<style type="text/css">#login{border: 2px solid #fc4747;}</style>
-			<?php } ?>
+					<label class="errors">Аккаунт с таким логином уже существует!</label>
+					<style type="text/css">#login{border: 2px solid #fc4747;}</style>
+			<?php unset($_SESSION['errors']); } ?>
 			</div>
 
 			<div class="input-field-div">
@@ -40,22 +40,22 @@
 				<label class="input-field-placeholder">Пароль</label>
 
 			<?php if($_SESSION['errors'] == 11){ ?>
-				<label class="errors">Введите пароль!</label>
-				<style type="text/css">#password{border: 2px solid #fc4747;}</style>
-			<?php } ?>
+					<label class="errors">Введите пароль!</label>
+					<style type="text/css">#password{border: 2px solid #fc4747;}</style>
+			<?php unset($_SESSION['errors']); } ?>
 			</div>
 
 			<div class="input-field-div">
 				<input id="second-password" class="input-field" type="password" name="secondPassword" required>
 				<label class="input-field-placeholder">Подтвердите пароль</label>
 			<?php if($_SESSION['errors'] == 12){ ?>
-				<label class="errors">Введите проверочный пароль!</label>
-				<style type="text/css">#second-password{border: 2px solid #fc4747;}</style>
-			<?php } 
+					<label class="errors">Введите проверочный пароль!</label>
+					<style type="text/css">#second-password{border: 2px solid #fc4747;}</style>
+			<?php unset($_SESSION['errors']); } 
 				  if($_SESSION['errors'] == 13){ ?>
-				<label class="errors">Пароли не совпали!</label>
-				<style type="text/css">#second-password{border: 2px solid #fc4747;}</style>
-			<?php } ?>
+					<label class="errors">Пароли не совпали!</label>
+					<style type="text/css">#second-password{border: 2px solid #fc4747;}</style>
+			<?php unset($_SESSION['errors']); } ?>
 			</div>
 
 			<button id="auth-btn" type="submit" name="signup-btn"> Зарегистрироваться </button><br>

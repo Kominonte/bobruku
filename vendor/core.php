@@ -50,6 +50,7 @@ if(isset($postData['signup-btn'])){
 		$user->login = $postData['login'];
 		$user->password = password_hash($postData['password'], PASSWORD_DEFAULT);
 		$user->dateRegistration = date("Y-m-d H:i:s");
+		$user->role = 1;
 		R::store($user);
 
 		$_SESSION['complete'] = 10;
@@ -67,7 +68,7 @@ if(isset($postData['signup-btn'])){
 /*==================================Авторизация===============================================*/
 
 if(isset($postData['signin-btn'])){
-	$errors[] = array();
+	$errors = array();
 
 	if(trim($postData['login']) == ''){
 		$_SESSION['errors'] = 10;
@@ -95,12 +96,22 @@ if(isset($postData['signin-btn'])){
 	}
 
 	if(empty($errors)){
-		$_SESSION['errors'] = 0;
 		header("Location: ../index.php");
+	}else{
+		header("Location: ../pages/signin.php");
 	}
+}
+// Заносим объект user в сессию 
+
+$user = R::findOne('user', 'id = ?', array($_SESSION['user']->id));
+
+/*==================================Выход из профиля===============================================*/
+
+if(isset($postData['logout-btn'])){
+	unset($_SESSION['user']);
+	header("Location: /");
 }
 
 
-$user = R::findOne('user', 'id = ?', array($_SESSION['user']->id));
 
 ?>
