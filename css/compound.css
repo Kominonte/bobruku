@@ -117,12 +117,16 @@ body {
 #top-control {
 	width: 100%;
 	height: 47px;
+	margin: 0px 0px 10px 0px;
 	border-radius: 10px;
 	background-color: #292929;
+	text-align: center;
 }
 
-.main-element {
+.top-control-element {
 	display: inline-block;
+	float: right;
+	margin: 0px 0px 0px 10px;
 	padding: 10px;
 	border: 2px solid #ffffff;
 	border-radius: 10px;
@@ -136,7 +140,108 @@ body {
 	transition: 0.3s;
 }
 
-.main-element:hover {
+.top-control-element:hover {
 	background-color: #292929;
 	color: #ffffff;
+}
+
+#top-control-label{
+	display: inline-block;
+	padding: 3px 0px 0px 0px;
+	color: #ffffff;
+	font-size: 30px;
+	font-weight: 400;
+}
+
+#compound-box {
+	width: 100%;
+}
+
+.compound-list {
+	position: relative;
+	float: left;
+	width: calc(50% - 30px);
+	height: 300px;
+	margin: 0px 10px 10px 0px;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #292929;
+}
+
+.compound-login {
+	display: inline-block;
+	margin: 0px 5px 10px 0px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #1c1c1c;
+	color: #ffffff;
+	font-size: 20px;
+}
+
+.compound-rank {
+	display: inline-block;
+	margin: 0px 5px 0px 0px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #1c1c1c;
+	color: #ffffff;
+	font-size: 20px;
+}
+
+.compound-date {
+	display: inline-block;
+	margin: 0px 5px 0px 0px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #1c1c1c;
+	color: #ffffff;
+	font-size: 20px;
+}
+
+.compound-armor-img-box {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 200px;
+	border-radius: 5px;
+	height: 250px;
+	overflow: hidden;
+}
+
+.compound-armor-name {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	padding: 5px;
+	z-index: 2;
+	background-color: rgba(20, 20, 20, 0.6);
+}
+
+.compound-armor-img {
+	transform: scale(2.0);
+	margin: 10px 0px 0px 30px;
+	height: 200px;
+	z-index: 1;
+}
+
+.compound-squad-box {
+	position: relative;
+	width: 64%;
+	height: 50px;
+	margin: 10px 0px;
+	border-radius: 5px;
+	background-repeat: no-repeat;
+	background-size: 40px;
+	background-position-x: 5px;
+	background-position-y: 5px;
+}
+
+.compound-squad-name {
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	color: #1c1c1c;
+	font-size: 25px;
+	font-weight: 500;
 }

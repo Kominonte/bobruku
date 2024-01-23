@@ -18,14 +18,8 @@
 <body>
 	<img id="fon" src="assets/background/fon1.jpeg">
 
-	<?php if($user): ?>
-		<nav id="menu">
-			<a class="menu-element"><?= print_r($user->login) ?></a>
-			<span id="account"></span>
-			<a class="menu-element" href="pages/compound.php">Состав и снаряга</a>
-			<a class="menu-element">Команды</a>
-			<span id="name">Bobruku</span>
-		</nav>
+	<?php if($user): require_once("includs/menu.php");?>
+
 
 		<div id="main">
 			
