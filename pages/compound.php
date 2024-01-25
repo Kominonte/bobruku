@@ -37,7 +37,6 @@
 						$iter += 1 ;
 						
 				?>
-
 				<div class="compound-list">
 					<span class="compound-login"><?= $compoundRow['login'] ?></span><br>
 					<span class="compound-rank">
@@ -70,13 +69,13 @@
 
 						switch ($userEquipmentArmor['armomr_rank']) {
 								case 3:
-									$userGunRankColor = '#8d8dff';
+									$userArmorRankColor = '#8d8dff';
 									break;
 								case 4:
-									$userGunRankColor = '#d968c4';
+									$userArmorRankColor = '#d968c4';
 									break;
 								case 5:
-									$userGunRankColor = '#ff5767';
+									$userArmorRankColor = '#ff5767';
 									break;	
 							}	
 								
@@ -126,8 +125,41 @@
 					</div>
 					
 					<div class="compound-armor-img-box">
-						<span class="compound-armor-name" style="color:<?= $userGunRankColor ?>;"><?= ($userEquipmentArmor['armor_name']);?></span>
+						<span class="compound-armor-name" style="color:<?= $userArmorRankColor ?>;"><?= ($userEquipmentArmor['armor_name']);?></span>
 						<img class="compound-armor-img" src="<?php print_r($userEquipmentArmor['armomr_img']); ?>">
+					</div>
+
+					<div class="attendance-box">
+						<span class="attendance-label">Участие на КВ</span>
+						<div class="attendance-was-box">
+							<span class="attendance-was-label">Был</span>
+						</div>
+						<div class="attendance-wasnot-box">
+							<span class="attendance-wasnot-label"> Не был</span>
+						</div>
+					</div>
+
+					<div class="gun-box">
+						<?php $userEquipmentGun = R::findOne('equipment', 'id = ?', array($compoundRow['main_gun_1']));
+							switch ($userEquipmentArmor['armomr_rank']) {
+								case 3:
+									$userGunRankColor = '#8d8dff';
+									break;
+								case 4:
+									$userGunRankColor = '#d968c4';
+									break;
+								case 5:
+									$userGunRankColor = '#ff5767';
+									break;	
+							}	
+						?>
+						<div class="main-gun">
+							<div class="compound-gun-img-box">
+								<span class="compound-gun-name" style="color:<?= $userGunRankColor ?>;"><?= ($userEquipmentGun['armor_name']);?></span>
+								<img class="compound-gun-img" src="<?= $userEquipmentGun['armomr_img'] ?>">
+							</div>
+						</div>
+						<div class="compound-second-box"></div>
 					</div>
 				</div>
 
@@ -135,7 +167,7 @@
 
 
 			</div>
-			
+		</div>
 		</div>
 
 		<form action="../vendor/core.php" method="POST">

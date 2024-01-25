@@ -181,7 +181,7 @@ body {
 }
 
 .add-armor-file {
-	width: 100% ;
+	width: calc(100% - 20px) ;
 	margin: 0px 0px 10px 0px;
 	padding: 10px;
 	border: none;

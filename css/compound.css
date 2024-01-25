@@ -70,11 +70,11 @@ body {
 	position: relative;
 	padding: 10px;
 	width: 1240px;
-	height: 1000px;
 	margin: 100px auto;
 	border-radius: 20px;
 	background-color: #1c1c1c;
 }
+
 
 .menu-element {
 	display: inline-block;
@@ -115,6 +115,7 @@ body {
 }
 
 #top-control {
+	position: relative;
 	width: 100%;
 	height: 47px;
 	margin: 0px 0px 10px 0px;
@@ -154,14 +155,17 @@ body {
 }
 
 #compound-box {
+	display: inline-block;
+	position: relative;
 	width: 100%;
+	background-color: #1c1c1c;
 }
 
 .compound-list {
+	display: inline-block;
 	position: relative;
 	float: left;
 	width: calc(50% - 30px);
-	height: 300px;
 	margin: 0px 10px 10px 0px;
 	padding: 10px;
 	border-radius: 10px;
@@ -174,7 +178,7 @@ body {
 	padding: 10px;
 	border-radius: 5px;
 	background-color: #1c1c1c;
-	color: #ffffff;
+	color: #9c9c9c;
 	font-size: 20px;
 }
 
@@ -184,7 +188,7 @@ body {
 	padding: 10px;
 	border-radius: 5px;
 	background-color: #1c1c1c;
-	color: #ffffff;
+	color: #9c9c9c;
 	font-size: 20px;
 }
 
@@ -194,7 +198,7 @@ body {
 	padding: 10px;
 	border-radius: 5px;
 	background-color: #1c1c1c;
-	color: #ffffff;
+	color: #9c9c9c;
 	font-size: 20px;
 }
 
@@ -216,6 +220,7 @@ body {
 	padding: 5px;
 	z-index: 2;
 	background-color: rgba(20, 20, 20, 0.6);
+	text-align: center;
 }
 
 .compound-armor-img {
@@ -244,4 +249,100 @@ body {
 	color: #1c1c1c;
 	font-size: 25px;
 	font-weight: 500;
+}
+
+.attendance-box {
+	display: inline-block;
+	position: relative;
+	width: 64%;
+	height: 80px;
+	margin: 4px 0px 0px 0px;
+	color: #9c9c9c;
+	font-size: 18px;
+}
+
+.attendance-label {
+	display: inline-block;
+	width: calc(100% - 5px);
+	height: 30px;
+	padding: 5px 0px 0px 5px;
+	border-radius: 5px;
+	background-color: #1f1f1f;
+	text-align: center;
+}
+
+.aattendance-was-box{
+	float: left;
+	width: calc(50% - 23px);
+	height: 20px;
+	border-radius: 5px;
+}
+
+.attendance-was-label {
+	width: 100%;
+	margin: 7px 0px 0px 0px;
+	padding: 8px 10px 8px 10px;
+	text-align: left;
+	background-color: #1f1f1f;
+}
+
+.attendance-wasnot-box {
+	float: right;
+	width: calc(50% - 23px);
+	height: 20px;	
+	border-radius: 5px;
+}
+
+.attendance-wasnot-label {
+	width: 100%;
+	height: 20px;
+	margin: 7px 0px 0px 0px;
+	padding: 8px 10px 8px 10px;
+	text-align: left;
+	background-color: #1f1f1f;
+}
+
+.gun-box {
+	display: inline-block;
+	position: relative;
+	margin: 0px 0px 0px 0px;
+	width: 100%;
+	height: 155px;
+}
+
+.compound-gun-img-box {
+	position: absolute;
+	top: 10px;
+	left: 0px;
+	width: 64%;
+	height: 150px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.compound-gun-name {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	padding: 5px;
+	z-index: 2;
+	background-color: rgba(20, 20, 20, 0.6);
+	text-align: center;
+}
+
+.compound-gun-img {
+	transform: scale(1.25);
+	margin: -140px 0px 0px 0px;
+	z-index: 1;
+}
+
+.compound-second-box {
+	position: absolute;
+	right: 0px;
+	margin: 10px 0px 0px 0px;
+	width: 200px;
+	height: 150px;
+	border-radius: 5px;
+	background-color: #1c1c1c;
 }
