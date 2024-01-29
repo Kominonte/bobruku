@@ -15,8 +15,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 	<title>Bobruk</title>
 </head>
-<body>
+<body id="body">
 	<img id="fon" src="../assets/background/fon1.jpeg">
+
+	<div id="background-dark"></div>
 
 		<?php if($user): require_once("../includs/menu.php");?>
 
@@ -24,19 +26,24 @@
 			<?php if($user->role == 2): ?>
 			<div id="top-control">
 				<a class="top-control-element" href="add-user.php">+ Добавить человека</a>
-				<a class="top-control-element" href="compound.php">+ Посещаемость</a>	
 			</div>
 			<?php endif ?>
 
+			<div id="main-compound-box">
+				<span id="main-compound-label">Состав</span>
+			</div>
+
 			<div id="compound-box">
 				<?php
-					$compound = R::findAll('user');
+					$compound = R::findAll('user', 'status = ?', array(1));
 
 					foreach ($compound as $compoundRow) {
 
 						$iter += 1 ;
 						
 				?>
+			<div id="wrapper-main">
+
 				<div class="compound-list">
 					<span class="compound-login"><?= $compoundRow['login'] ?></span><br>
 					<span class="compound-rank">
@@ -85,33 +92,39 @@
 						<span id="compound-squad-name<?= $iter ?>" class="compound-squad-name">
 							<?php
 								switch ($compoundRow['squad']) {
+									case 0:
+										$userSquadColor = '#1c1c1c';
+										$userSquadName = 'Не распределен';
+										$userSquadImg = '';
+										break;
+
 									case 1:
 										$userSquadColor = '#8b0808';
-										$userSquadName = 'Корусанская Гвардия';
+										$userSquadName = 'Отряд 1';
 										$userSquadImg = '';
 										break;
 
 									case 2:
 										$userSquadColor = '#06135f';
-										$userSquadName = '501-й легион';
+										$userSquadName = 'Отряд 2';
 										$userSquadImg = '/assets/icon/icon-attack.png';
 										break;
 
 									case 3:
 										$userSquadColor = '#e74c3c';
-										$userSquadName = '212-й штурмовой батальон';
+										$userSquadName = 'Отряд 3';
 										$userSquadImg = '/assets/icon/icon-tent.png';
 										break;
 
 									case 4:
 										$userSquadColor = '#073609';
-										$userSquadName = '41-й элитный корпус';
+										$userSquadName = 'Отряд 4';
 										$userSquadImg = '/assets/icon/icon-scouting.png';
 										break;
 
 									case 5:
 										$userSquadColor = '#546e7a';
-										$userSquadName = '104-й батальон';
+										$userSquadName = 'Отряд 5';
 										$userSquadImg = '/assets/icon/icon-attack.png';
 										break;
 									}
@@ -131,11 +144,11 @@
 
 					<div class="attendance-box">
 						<span class="attendance-label">Участие на КВ</span>
-						<div class="attendance-was-box">
-							<span class="attendance-was-label">Был</span>
+						<div class="attendance-was">
+							<span >Был | <?= $compoundRow['was'] ?></span>
 						</div>
-						<div class="attendance-wasnot-box">
-							<span class="attendance-wasnot-label"> Не был</span>
+						<div class="attendance-wasnot">
+							<span > Не был | <?= $compoundRow['wasnot'] ?></span>
 						</div>
 					</div>
 
@@ -161,24 +174,109 @@
 						</div>
 						<div class="compound-second-box"></div>
 					</div>
+
+					<div id="attendance-control-box">
+						<form action="../vendor/core.php" method="POST">
+							<input type="hidden" name="attendance-userid" value="<?= $compoundRow['id'] ?>">
+							<button class="attendance-btn" type="submit" name="attendance-was-btn"> Присутствовал</button>
+							<button class="attendance-btn" type="submit" name="attendance-wasnot-btn"> Отсутствовал</button>
+							<button class="attendance-btn-end" type="submit" name="attendance-reserve-btn"> В резерв</button>
+						</form>
+							<button id="hooky-user" class="attendance-btn" type="submit" name="attendance-hooky-btn"  onclick="viewHooky()">  Прогул</button> 
+							<button id="blacklist-user" class="attendance-btn" type="submit" name="attendance-blacklist-btn"> В ЧС</button>
+						<form action="../vendor/core.php" method="POST">
+							<button id="delete-user" class="attendance-btn" type="submit" name="attendance-delete-btn"> Кикнуть</button>  
+						</form>
+						
+					</div>
+
 				</div>
 
 				<?php } ?>
 
 
 			</div>
+
+			<div id="reserve-box">
+				<span id="reserve-label">Резерв</span>
+				<div class="reserve-list">
+					<span class="reserve-login"> Ник </span>
+					<span class="reserve-rank"> Звание </span>
+					<span class="reserve-was">Участвие в КВ</span>
+					<span class="reserve-wasnot"> Пропущено КВ</span>
+					<span class="reserve-date"> В резерве </span>
+				</div>
+				<?php
+					$reserve = R::findAll('user', 'status = ?', array(2));
+
+					foreach ($reserve as $reserveRow) {
+
+						$iter += 1 ;
+						
+				?>
+
+				<div class="reserve-list">
+					<span class="reserve-login"> <?= $reserveRow['login'] ?>	</span>
+					<span class="reserve-rank">
+						<?php
+							switch ($reserveRow['rank']) {
+								case 1:
+									$userRank = 'Новобранец';
+									break;
+								case 2:
+									$userRank = 'Рядовой';
+									break;
+								case 3:
+									$userRank = 'Сержант';
+									break;
+								case 4:
+									$userRank = 'Офицер';
+									break;
+								case 5:
+									$userRank = 'Глава';
+									break;	
+							}
+
+							print_r($userRank);
+						?>
+					</span>
+
+					<span class="reserve-was">Был | <?= $reserveRow['was'] ?></span>
+					<span class="reserve-wasnot">Не был | <?= $reserveRow['wasnot'] ?></span>
+					<span class="reserve-date"> c <?=  mb_strimwidth($reserveRow['date_reserve'], 0, 10) ?> </span>
+					<form  action="../vendor/core.php" method="POST">
+						<button class="reserve-return-btn" type="submit" name="attendance-hooky-btn">вернуть в состав</button>
+					</form>
+				</div>
+				<?php } ?>
+			</div>
+
+			<div id="blacklist-box">
+				<span id="blacklist-label">Черный список</span>
+			</div>
+			
 		</div>
-		</div>
+
 
 		<form action="../vendor/core.php" method="POST">
 			<button id="auth-btn" type="submit" name="logout-btn"> Выйти </button><br>
 		</form>
+
+		<form id="hooky-add-box" action="../vendor/core.php" method="POST">
+				<label id="hooky-сause-label">Причина</label>
+				<label id="hooky-сause-close" onclick="closeHooky()">x</label>
+				<input type="hidden" name="attendance-userid" value="<?= $compoundRow['id'] ?>">
+				<textarea id="hooky-сause-text" type="textarea" name="hooky-сause"> </textarea>
+				<button id="hooky-user" class="attendance-btn" type="submit" name="attendance-hooky-btn"> Прогул</button>
+		</form>
+
 	<?php else: ?>
 	<div id="auth">
 		<p id="welcome-text">Прежде чем увидить снарягу клана вам надо</p><br>
 		<a id="link-auth" href="../pages/signin.php">авторизоваться</a>
 	</div>
 	<?php endif; ?>
+
 	<script type="text/javascript"  src="/js/main.js"></script>
 </body>
 </html>

@@ -47,3 +47,17 @@ var colGunSecond = 1;
 			false;
 		}
 	});
+
+
+function viewHooky(){
+ 	document.getElementById("background-dark").style.display = "block";
+	document.getElementById("hooky-add-box").style.display = "block";
+	document.getElementById("body").style.overflow = "hidden";
+};
+
+function closeHooky(){
+ 	document.getElementById("background-dark").style.display = "none";
+	document.getElementById("hooky-add-box").style.display = "none";
+	document.getElementById("body").style.overflow = "visible";
+};
+

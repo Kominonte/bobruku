@@ -87,11 +87,12 @@
 
 				<span class="add-user-label">Отряд</span><br>
 					<select class="add-user-select" name="user-squad">
-						<option class="user-option" style="color: #8b0808;" value="1">Корусанская Гвардия</option>
-						<option class="user-option" style="color: #06135f;" value="2">501-й легион</option>
-					 	<option class="user-option" style="color: #e74c3c;" value="3">212-й штурмовой батальон</option>
-					  	<option class="user-option" style="color: #073609;" value="4">41-й элитный корпус</option>
-					  	<option class="user-option" style="color: #546e7a;" value="5">104-й батальон</option>
+						<option class="user-option" style="color: #8b0808;" value="1">Отряд 1</option>
+						<option class="user-option" style="color: #06135f;" value="2">Отряд 2</option>
+					 	<option class="user-option" style="color: #e74c3c;" value="3">Отряд 3</option>
+					  	<option class="user-option" style="color: #073609;" value="4">Отряд 4</option>
+					  	<option class="user-option" style="color: #546e7a;" value="5">Отряд 5</option>
+					  	<option class="user-option" style="color: #ffffff;" value="0">Не рапределен</option>
 					</select><br>
 
 				<span class="add-user-label">Роль</span><br>

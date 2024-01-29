@@ -191,6 +191,7 @@ if(isset($postData['add-user-btn'])){
 	$user->dateRegistration = date("Y-m-d H:i:s");
 	$user->role = $postData['user-role'];
 	$user->rank = $postData['user-rank'];
+	$user->status = 1;
 
 	$user->armor_1 = $postData['user-armor-1'];
 	$user->armor_2 = $postData['user-armor-2'];
@@ -213,5 +214,60 @@ if(isset($postData['add-user-btn'])){
 	header("Location: /pages/add-user.php");
 
 }
+
+/*=======================================Посещаемость================================================*/
+
+/*---------------------------------------Присутствовал-----------------------------------------------*/
+
+if(isset($postData['attendance-was-btn'])){
+	$user = R::findOne('user', 'id = ?', array($postData['attendance-userid']));
+	$user->was += 1 ;
+	R::store($user);
+
+	header("Location: /pages/compound.php");
+}
+
+/*---------------------------------------Отсутствовал------------------------------------------------*/
+
+if(isset($postData['attendance-wasnot-btn'])){
+	$user = R::findOne('user', 'id = ?', array($postData['attendance-userid']));
+	$user->wasnot += 1 ;
+	R::store($user);
+
+	header("Location: /pages/compound.php");
+}
+
+/*------------------------------------------Прогул---------------------------------------------------*/
+
+if(isset($postData['attendance-hooky-btn'])){
+	$user = R::findOne('user', 'id = ?', array($postData['attendance-userid']));
+	$user->hooky += 1 ;
+	$user->date_hooky = date("Y-m-d H:i:s");
+	R::store($user);
+
+	header("Location: /pages/compound.php");
+}
+
+/*-----------------------------------------Кикнуть---------------------------------------------------*/
+
+if(isset($postData['attendance-delete-btn'])){
+	$user = R::findOne('user', 'id = ?', array($postData['attendance-userid']));
+	R::trash($user);
+
+	header("Location: /pages/compound.php");
+}
+
+/*----------------------------------------В резерв---------------------------------------------------*/
+
+if(isset($postData['attendance-reserve-btn'])){
+	$user = R::findOne('user', 'id = ?', array($postData['attendance-userid']));
+	$user->status = 2 ;
+	$user->date_reserve = date("Y-m-d H:i:s");
+	R::store($user);
+
+	header("Location: /pages/compound.php");
+}
+
+
 
 ?>

@@ -3,9 +3,9 @@
 			<span id="account"></span>
 			<a class="menu-element" href="/pages/compound.php">Состав и снаряга</a>
 			<a class="menu-element" href="/pages/squad.php">Отряды</a>
-			<a class="menu-element" href="/pages/treasury.php">Казна и коммисия</a>
+			<a class="menu-element" href="/pages/exchequer.php">Казна и сборы</a>
 		<?php if($user->role == 2): ?>
 			<a class="menu-element" href="/pages/add-armor.php">+ Добавить снарягу</a>
 		<?php endif ?>
-			<a href="/index.php" id="name">Bobruku</a>
+			<a href="/index.php" id="name">King and Clown</a>
 </nav>
