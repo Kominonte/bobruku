@@ -193,23 +193,34 @@ if(isset($postData['add-user-btn'])){
 	$user->rank = $postData['user-rank'];
 	$user->status = 1;
 
-	$user->armor_1 = $postData['user-armor-1'];
-	$user->armor_2 = $postData['user-armor-2'];
-	$user->armor_3 = $postData['user-armor-3'];
-
-	$user->main_gun_1 = $postData['user-main-gun-1'];
-	$user->main_gun_2 = $postData['user-main-gun-2'];
-	$user->main_gun_3 = $postData['user-main-gun-3'];
-	$user->main_gun_4 = $postData['user-main-gun-4'];
-	$user->main_gun_5 = $postData['user-main-gun-5'];
-
-	$user->second_gun_1 = $postData['user-second-gun-1'];
-	$user->second_gun_2 = $postData['user-second-gun-2'];
-	$user->second_gun_3 = $postData['user-second-gun-3'];
-
-	$user->squad = $postData['user-squad'];
-
 	R::store($user);
+
+	$userGetId = R::findOne('user', 'login = ?', array($postData['user-login']));
+
+	foreach($userGetId as $userGetIdRow){
+	}
+
+	$userArmorList = R::dispense('user_armor_list');
+
+	$userArmorList->user_id = $userGetIdRow['id'];
+
+	$userArmorList->armor_1 = $postData['user-armor-1'];
+	$userArmorList->armor_2 = $postData['user-armor-2'];
+	$userArmorList->armor_3 = $postData['user-armor-3'];
+
+	$userArmorList->main_gun_1 = $postData['user-main-gun-1'];
+	$userArmorList->main_gun_2 = $postData['user-main-gun-2'];
+	$userArmorList->main_gun_3 = $postData['user-main-gun-3'];
+	$userArmorList->main_gun_4 = $postData['user-main-gun-4'];
+	$userArmorList->main_gun_5 = $postData['user-main-gun-5'];
+
+	$userArmorList->second_gun_1 = $postData['user-second-gun-1'];
+	$userArmorList->second_gun_2 = $postData['user-second-gun-2'];
+	$userArmorList->second_gun_3 = $postData['user-second-gun-3'];
+
+	$userArmorList->squad = $postData['user-squad'];
+
+	R::store($userArmorList);
 
 	header("Location: /pages/add-user.php");
 
