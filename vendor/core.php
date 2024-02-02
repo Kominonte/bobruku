@@ -192,17 +192,17 @@ if(isset($postData['add-user-btn'])){
 	$user->role = $postData['user-role'];
 	$user->rank = $postData['user-rank'];
 	$user->status = 1;
+	$user->squad = $postData['user-squad'];
 
 	R::store($user);
 
 	$userGetId = R::findOne('user', 'login = ?', array($postData['user-login']));
 
-	foreach($userGetId as $userGetIdRow){
-	}
+	print_r($userGetId['id']);
 
-	$userArmorList = R::dispense('user_armor_list');
+	$userArmorList = R::dispense('armorlist');
 
-	$userArmorList->user_id = $userGetIdRow['id'];
+	$userArmorList->user_id = $userGetId['id']; 
 
 	$userArmorList->armor_1 = $postData['user-armor-1'];
 	$userArmorList->armor_2 = $postData['user-armor-2'];
@@ -218,11 +218,9 @@ if(isset($postData['add-user-btn'])){
 	$userArmorList->second_gun_2 = $postData['user-second-gun-2'];
 	$userArmorList->second_gun_3 = $postData['user-second-gun-3'];
 
-	$userArmorList->squad = $postData['user-squad'];
-
 	R::store($userArmorList);
 
-	header("Location: /pages/add-user.php");
+	header("Location: /pages/compound.php");
 
 }
 
@@ -279,6 +277,112 @@ if(isset($postData['attendance-reserve-btn'])){
 	header("Location: /pages/compound.php");
 }
 
+/*===========================================Сборы====================================================*/
 
+/*-------------------------------------------Вклад----------------------------------------------------*/
 
+if(isset($postData['tax-passed'])){
+
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->tax_value += $postData['contribution-value']; 
+		$exchequer->tax = 1;
+		R::store($exchequer);	
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->tax_value += $postData['contribution-value']; 
+		$exchequer->tax = 1;
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
+
+if(isset($postData['tax-failed'])){
+
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->tax = 0; 
+		R::store($exchequer);
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->tax = 0; 
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
+
+/*-------------------------------------------Норма----------------------------------------------------*/
+
+if(isset($postData['weeklynorm-passed'])){
+
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->weeklynorm = 1; 
+		R::store($exchequer);
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->weeklynorm = 1; 
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
+
+if(isset($postData['weeklynorm-failed'])){
+
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->weeklynorm = 0; 
+		R::store($exchequer);
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->weeklynorm = 0; 
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
+
+/*------------------------------------------Выговор---------------------------------------------------*/
+if(isset($postData['rebuke-passed'])){
+
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->rebuke += 1; 
+		R::store($exchequer);
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->rebuke += 1; 
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
 ?>

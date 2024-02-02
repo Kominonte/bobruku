@@ -71,10 +71,21 @@
 					</span>
 					<span class="compound-date"><?= mb_strimwidth($compoundRow['date_registration'], 0, 10) ?></span>
 
-					<?php
-						$userEquipmentArmor = R::findOne('equipment', 'id = ?', array($compoundRow['armor_1']));
+					<?php 
 
-						switch ($userEquipmentArmor['armomr_rank']) {
+							$sql = "SELECT * 
+									FROM armorlist ar
+	 									 LEFT JOIN equipment e ON e.id = ar.armor_1 
+									WHERE ar.user_id =" . $compoundRow['id'];
+
+ 							$rows = R::getAll( $sql );
+
+ 							$userEquipmentArmor = R::convertToBeans( 'armorlist', $rows );
+ 							
+ 							foreach ($userEquipmentArmor as $userEquipmentArmorRow){
+ 							}
+							
+							switch ($userEquipmentArmorRow['armomr_rank']) {
 								case 3:
 									$userArmorRankColor = '#8d8dff';
 									break;
@@ -85,8 +96,7 @@
 									$userArmorRankColor = '#ff5767';
 									break;	
 							}	
-								
-					?>
+						?>
 
 					<div id="compound-squad-box-<?= $iter ?>" class="compound-squad-box">
 						<span id="compound-squad-name<?= $iter ?>" class="compound-squad-name">
@@ -99,33 +109,27 @@
 										break;
 
 									case 1:
-										$userSquadColor = '#8b0808';
-										$userSquadName = 'Отряд 1';
+										$userSquadColor = '#db0000';
+										$userSquadName = 'Main PVP';
 										$userSquadImg = '';
 										break;
 
 									case 2:
 										$userSquadColor = '#06135f';
-										$userSquadName = 'Отряд 2';
+										$userSquadName = 'Def 1';
 										$userSquadImg = '/assets/icon/icon-attack.png';
 										break;
 
 									case 3:
 										$userSquadColor = '#e74c3c';
-										$userSquadName = 'Отряд 3';
+										$userSquadName = 'Def 2';
 										$userSquadImg = '/assets/icon/icon-tent.png';
 										break;
 
 									case 4:
-										$userSquadColor = '#073609';
-										$userSquadName = 'Отряд 4';
-										$userSquadImg = '/assets/icon/icon-scouting.png';
-										break;
-
-									case 5:
-										$userSquadColor = '#546e7a';
-										$userSquadName = 'Отряд 5';
-										$userSquadImg = '/assets/icon/icon-attack.png';
+										$userSquadColor = '#2da103';
+										$userSquadName = 'Bio';
+										$userSquadImg = '/assets/icon/icon-bio.png';
 										break;
 									}
 								print_r($userSquadName);
@@ -138,8 +142,8 @@
 					</div>
 					
 					<div class="compound-armor-img-box">
-						<span class="compound-armor-name" style="color:<?= $userArmorRankColor ?>;"><?= ($userEquipmentArmor['armor_name']);?></span>
-						<img class="compound-armor-img" src="<?php print_r($userEquipmentArmor['armomr_img']); ?>">
+						<span class="compound-armor-name" style="color:<?= $userArmorRankColor ?>;"><?= ($userEquipmentArmorRow['armor_name']);?></span>
+						<img class="compound-armor-img" src="<?php print_r($userEquipmentArmorRow['armomr_img']); ?>">
 					</div>
 
 					<div class="attendance-box">
@@ -153,8 +157,22 @@
 					</div>
 
 					<div class="gun-box">
-						<?php $userEquipmentGun = R::findOne('equipment', 'id = ?', array($compoundRow['main_gun_1']));
-							switch ($userEquipmentArmor['armomr_rank']) {
+
+						<?php 
+
+							$sql = "SELECT * 
+									FROM armorlist ar
+	 									 LEFT JOIN equipment e ON e.id = ar.main_gun_1 
+									WHERE ar.user_id =" . $compoundRow['id'];
+
+ 							$rows = R::getAll( $sql );
+
+ 							$userEquipmentGun = R::convertToBeans( 'armorlist', $rows );
+
+ 							foreach ($userEquipmentGun as $userEquipmentGunRow){
+ 							}
+							
+							switch ($userEquipmentGunRow['armomr_rank']) {
 								case 3:
 									$userGunRankColor = '#8d8dff';
 									break;
@@ -168,8 +186,8 @@
 						?>
 						<div class="main-gun">
 							<div class="compound-gun-img-box">
-								<span class="compound-gun-name" style="color:<?= $userGunRankColor ?>;"><?= ($userEquipmentGun['armor_name']);?></span>
-								<img class="compound-gun-img" src="<?= $userEquipmentGun['armomr_img'] ?>">
+								<span class="compound-gun-name" style="color:<?= $userGunRankColor ?>;"><?= ($userEquipmentGunRow['armor_name']);?></span>
+								<img class="compound-gun-img" src="<?= $userEquipmentGunRow['armomr_img'] ?>">
 							</div>
 						</div>
 						<div class="compound-second-box"></div>

@@ -23,6 +23,7 @@
 		<div id="main">
 
 			<span id="add-label">Добавление нового члена клана</span>
+			
 			<form id="add-user-form" action="" method="POST" >
 
 				<span class="add-user-label">Ник</span><br>
@@ -31,6 +32,7 @@
 				<div id="box-armor">
 				<span class="add-user-label">Броня</span><br>
 					<select class="add-user-select" name="user-armor-1">
+						<option value="0">Отсутствует</option>
 					<?php 
 						$equipment = R::findAll('equipment', 'armor_type = 2');
 
@@ -47,6 +49,7 @@
 				<div id="box-main-gun">
 				<span class="add-user-label">Основное оружие</span><br>
 					<select class="add-user-select" name="user-main-gun-1">
+						<option value="0">Отсутствует</option>
 					<?php 
 						$equipment = R::findAll('equipment', 'armor_type = 1');
 
@@ -63,6 +66,7 @@
 				<div id="box-second-gun">
 				<span class="add-user-label">Вторичное оружие</span><br>
 					<select class="add-user-select" name="user-second-gun-1">
+						<option value="0">Отсутствует</option>
 					<?php 
 						$equipment = R::findAll('equipment', 'armor_type = 1');
 
@@ -87,12 +91,11 @@
 
 				<span class="add-user-label">Отряд</span><br>
 					<select class="add-user-select" name="user-squad">
-						<option class="user-option" style="color: #8b0808;" value="1">Отряд 1</option>
-						<option class="user-option" style="color: #06135f;" value="2">Отряд 2</option>
-					 	<option class="user-option" style="color: #e74c3c;" value="3">Отряд 3</option>
-					  	<option class="user-option" style="color: #073609;" value="4">Отряд 4</option>
-					  	<option class="user-option" style="color: #546e7a;" value="5">Отряд 5</option>
-					  	<option class="user-option" style="color: #ffffff;" value="0">Не рапределен</option>
+						<option class="user-option" style="color: #ffffff;" value="0">Не рапределен</option>
+						<option class="user-option" style="color: #8b0808;" value="1">Main PVP</option>
+						<option class="user-option" style="color: #06135f;" value="2">Def 1</option>
+					 	<option class="user-option" style="color: #e74c3c;" value="3">Def 2</option>
+					  	<option class="user-option" style="color: #44db12;" value="4">Bio</option>
 					</select><br>
 
 				<span class="add-user-label">Роль</span><br>

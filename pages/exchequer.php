@@ -32,19 +32,80 @@
 			</div>
 
 		<?php 
-			$exchequer = R::findAll('user');
+			
+			$userExchequer = R::findAll('user');
 
-			foreach ($exchequer as $exchequerRow) {
-
+			foreach ($userExchequer as $userExchequerRow) {
 				$iter += 1 ;
-		 ?>
 
-			<div class="exchequer-list">
-				<span class="exchequer-login"><?= $exchequerRow['login'] ?></span>
-				<span class="exchequer-contribution">Вклад</span>
-				<span class="exchequer-tax">Налог</span>
-				<span class="exchequer-weeklynorm">Недельная норма</span>
-				<span class="exchequer-rebuke">Выговор</span>
+			$userExchequerSod = R::findOne('exchequerlist', 'user_id = ?', array($userExchequerRow['id']));
+		 ?>
+	
+			<div class="exchequer-list" style="background-color: <?php if($userExchequerRow['id'] == $user->id){
+		 		echo "#323232";
+		 	} ?>;">
+				<div>
+					<span class="exchequer-login"><?= $userExchequerRow['login'] ?></span>
+					<span class="exchequer-contribution"><?= $userExchequerSod['tax_value'] ?></span>
+				<?php if($userExchequerSod['tax'] == 1):?>
+					<span class="exchequer-tax" style="background-color: #02a302; color: #ffffff;">
+						Сдал
+					</span>
+				<?php elseif($userExchequerSod['tax'] == 0):?>
+					<span class="exchequer-tax" style="background-color: #e63225; color: #ffffff;">
+						Не сдал
+					</span>
+				<?php else:?>
+					<span class="exchequer-tax">
+						Освобожден
+					</span>
+				<?php endif; ?>
+
+				<?php if($userExchequerSod['weeklynorm'] == 1):?>
+					<span class="exchequer-weeklynorm" style="background-color: #02a302; color: #ffffff;">
+						Сдал
+					</span>
+				<?php elseif($userExchequerSod['weeklynorm'] == 0):?>
+					<span class="exchequer-weeklynorm" style="background-color: #e63225; color: #ffffff;">
+						Не сдал
+					</span>
+				<?php else:?>
+					<span class="exchequer-weeklynorm">
+						Освобожден
+					</span>
+				<?php endif; ?>
+
+					<span class="exchequer-rebuke"><?= $userExchequerSod['rebuke'] ?></span>
+				</div>
+
+				<div class="exchequer-list-control">
+					<form class="exchequer-form" action="../vendor/core.php" method="POST">
+						<input class="contribution-value" list="contribution-value" name="contribution-value">
+  							<datalist id="contribution-value">
+    							<option value="25000">
+    							<option value="75000">
+							</datalist>
+						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
+						<button class="exchequer-tax-passed" name="tax-passed">Сдал</button>
+					</form>
+
+					<form class="exchequer-form" action="../vendor/core.php" method="POST">
+						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
+						<button class="exchequer-tax-failed" name="tax-failed">Не сдал</button>
+					</form>
+
+					<form class="exchequer-form" action="../vendor/core.php" method="POST">
+						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
+						<button class="exchequer-weeklynorm-passed" name="weeklynorm-passed">Сдал</button>
+						<button class="exchequer-weeklynorm-failed" name="weeklynorm-failed">Не сдал</button>
+					</form>
+
+					<form class="exchequer-form" action="../vendor/core.php" method="POST">
+						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
+						<button class="exchequer-rebuke-passed" name="rebuke-passed">Выговор</button>
+					</form>
+					
+				</div>
 			</div>
 
 		<?php } ?>
