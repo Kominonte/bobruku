@@ -277,6 +277,17 @@ if(isset($postData['attendance-reserve-btn'])){
 	header("Location: /pages/compound.php");
 }
 
+/*--------------------------------------Вернуть с резерва---------------------------------------------*/
+
+if(isset($postData['reserve-return-btn'])){
+	$user = R::findOne('user', 'id = ?', array($postData['attendance-userid']));
+	$user->status = 1;
+	$user->date_reserve = date("Y-m-d H:i:s");
+	R::store($user);
+
+	header("Location: /pages/compound.php");
+}
+
 /*===========================================Сборы====================================================*/
 
 /*-------------------------------------------Вклад----------------------------------------------------*/

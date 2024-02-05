@@ -48,11 +48,11 @@
 					<span class="exchequer-login"><?= $userExchequerRow['login'] ?></span>
 					<span class="exchequer-contribution"><?= $userExchequerSod['tax_value'] ?></span>
 				<?php if($userExchequerSod['tax'] == 1):?>
-					<span class="exchequer-tax" style="background-color: #02a302; color: #ffffff;">
+					<span class="exchequer-tax" style="background-color: #129c00; color: #c1f7c8;">
 						Сдал
 					</span>
 				<?php elseif($userExchequerSod['tax'] == 0):?>
-					<span class="exchequer-tax" style="background-color: #e63225; color: #ffffff;">
+					<span class="exchequer-tax" style="background-color: #9c0a00; color: #f7c1c1;">
 						Не сдал
 					</span>
 				<?php else:?>
@@ -62,11 +62,11 @@
 				<?php endif; ?>
 
 				<?php if($userExchequerSod['weeklynorm'] == 1):?>
-					<span class="exchequer-weeklynorm" style="background-color: #02a302; color: #ffffff;">
+					<span class="exchequer-weeklynorm" style="background-color: #129c00; color: #c1f7c8;">
 						Сдал
 					</span>
 				<?php elseif($userExchequerSod['weeklynorm'] == 0):?>
-					<span class="exchequer-weeklynorm" style="background-color: #e63225; color: #ffffff;">
+					<span class="exchequer-weeklynorm" style="background-color: #9c0a00; color: #f7c1c1;">
 						Не сдал
 					</span>
 				<?php else:?>
@@ -75,7 +75,7 @@
 					</span>
 				<?php endif; ?>
 
-					<span class="exchequer-rebuke"><?= $userExchequerSod['rebuke'] ?></span>
+					<span class="exchequer-rebuke"><?= $userExchequerSod['rebuke'] ?>/3</span>
 				</div>
 
 				<div class="exchequer-list-control">

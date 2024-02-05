@@ -111,13 +111,13 @@
 									case 1:
 										$userSquadColor = '#db0000';
 										$userSquadName = 'Main PVP';
-										$userSquadImg = '';
+										$userSquadImg = '/assets/icon/icon-attack.png';
 										break;
 
 									case 2:
 										$userSquadColor = '#06135f';
 										$userSquadName = 'Def 1';
-										$userSquadImg = '/assets/icon/icon-attack.png';
+										$userSquadImg = '/assets/icon/icon-tent.png';
 										break;
 
 									case 3:
@@ -263,7 +263,8 @@
 					<span class="reserve-wasnot">Не был | <?= $reserveRow['wasnot'] ?></span>
 					<span class="reserve-date"> c <?=  mb_strimwidth($reserveRow['date_reserve'], 0, 10) ?> </span>
 					<form  action="../vendor/core.php" method="POST">
-						<button class="reserve-return-btn" type="submit" name="attendance-hooky-btn">вернуть в состав</button>
+						<input type="hidden" name="attendance-userid" value="<?= $reserveRow['id'] ?>">
+						<button class="reserve-return-btn" type="submit" name="reserve-return-btn">вернуть в состав</button>
 					</form>
 				</div>
 				<?php } ?>

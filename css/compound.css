@@ -383,7 +383,9 @@ body {
 	height: 40px;
 	margin: 10px 10px 0px 0px;
 	border-radius: 5px;
-	border: 2px solid #ffffff;
+	border: 2px solid #919191;
+	background-color: #919191;
+	color: #292929;
 	font-size: 18px;
 	font-weight: 600;
 	font-family: 'Montserrat', sans-serif;
@@ -392,9 +394,9 @@ body {
 }
 
 .attendance-btn:hover {
-	border: 2px solid  #ffffff;
+	border: 2px solid  #919191;
 	background-color: #292929;
-	color:  #ffffff;
+	color: #919191;
 }
 
 .attendance-btn-end {
@@ -402,7 +404,9 @@ body {
 	height: 40px;
 	margin: 10px 0px 0px 0px;
 	border-radius: 5px;
-	border: 2px solid #ffffff;
+	border: 2px solid #919191;
+	background-color: #919191;
+	color: #292929;
 	font-size: 18px;
 	font-weight: 600;
 	font-family: 'Montserrat', sans-serif;
@@ -411,9 +415,9 @@ body {
 }
 
 .attendance-btn-end:hover {
-	border: 2px solid  #ffffff;
+	border: 2px solid  #919191;
 	background-color: #292929;
-	color:  #ffffff;
+	color: #919191;
 }
 
 #reserve-box {
@@ -573,7 +577,7 @@ body {
 	border: 2px solid #919191;
 	border-radius: 5px;
 	background-color: #919191;
-	color: #292929;
+	color: #830808;
 	font-size: 20px;
 	font-weight: 600;
 	font-family: 'Montserrat', sans-serif;

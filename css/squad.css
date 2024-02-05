@@ -1,0 +1,174 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#fon {
+	position: fixed;
+	top: -20px;
+	left: -20px;
+	width: 103%;
+	filter: invert(80%);
+	z-index: -1;
+}
+
+#auth {
+	position: absolute;
+	left: 50%;
+	top: 300px;
+	width: 800px;
+	height: 170px;
+	margin: 0px 0px 0px -400px;
+	background: #1c1c1c;
+	border-radius: 20px;
+}
+
+#welcome-text {
+	color: #adadad;
+	margin: 20px;
+	font-size: 25px;
+	text-align: center;
+}
+
+#link-auth {
+	position: absolute;
+	left: 50%;
+	margin: 0px 0px 0px -119px;
+	padding: 6px 10px 10px 10px;
+	background-color: #ffffff;
+	border: 2px solid #ffffff;
+	border-radius: 10px;
+	color: #1c1c1c;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: none;
+	transition: 0.2s;
+}
+
+#link-auth:hover {
+	background-color: #1c1c1c;
+	border-radius: 10px;
+	color: #ffffff;
+	text-decoration: none;
+	padding: 6px 10px 10px 10px;
+}
+
+#menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;	
+	width: 100%;
+	height: 70px;
+	background-color: #1c1c1c;
+	z-index: 2;
+}
+
+#main {
+	position: relative;
+	width: 1240px;
+	height: 1000px;
+	padding: 10px;
+	margin: 100px auto;
+	border-radius: 20px;
+	background-color: #1c1c1c;
+}
+
+.menu-element {
+	display: inline-block;
+	margin: 13px 10px;
+	padding: 10px;
+	border-radius: 10px;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+.menu-element:hover {
+	background-color: #ffffff;
+	color: #1c1c1c;
+}
+
+#account {
+	padding: 20px 10px;
+	border-left: 2px solid #ffffff;
+}
+
+#name {
+	margin: 5px;
+	padding: 5px 10px;
+	float: right;
+	color: #ffffff;
+	font-size: 40px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+#name:hover {
+	transform: scale(1.1);
+}
+
+.squad-list{
+	position: relative;
+	float: left;
+	width: calc(50% - 10px);
+	margin: 0px 10px 10px 0px;
+	padding: 0px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: #292929;
+}
+
+
+.squad-name {
+	display: block;
+	border-radius: 10px 10px 0px 0px;
+	color: #292929;
+	font-size: 30px;
+	font-weight: 500;
+	text-align: center;
+}
+
+.squad-user {
+	display: block;
+	float: left;
+	width: calc(50% - 40px);
+	margin: 10px 5px 5px 10px;
+	padding: 10px 10px;
+	border-radius: 5px;
+	background-color: #363636;
+	color: #919191;
+	font-size: 20px;
+}
+
+.squad-description-wrapper {
+	display: block;
+}
+
+.squad-description {
+	width: calc(100% - 20px);
+	display: inline-block;
+	margin: 10px 10px;
+	padding: 3px 0px 5px 0px;
+	border-radius: 5px;
+	background-color: #363636;
+	font-size: 25px;
+	color: #919191;
+	text-align: center;
+}
+
+.squad-description-text{
+	width: calc(100% - 30px);
+	display: inline-block;
+	margin: 0px 10px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #363636;
+	font-size: 20px;
+	color: #919191;
+}
