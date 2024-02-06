@@ -396,4 +396,41 @@ if(isset($postData['rebuke-passed'])){
 
 	header("Location: /pages/exchequer.php");
 }
+
+/*===========================================Отряды==================================================*/
+
+if(isset($postData['add-user-squad-btn'])){
+
+	switch ($postData['position-user-squad']){
+		case 1:
+			$requestSquad = 'member_squad_1';
+		break;
+
+		case 2:
+			$requestSquad = 'member_squad_2';
+		break;
+
+		case 3:
+			$requestSquad = 'member_squad_3';
+		break;
+
+		case 4:
+			$requestSquad = 'member_squad_4';
+		break;
+
+		case 5:
+			$requestSquad = 'member_squad_5';
+		break;
+	}
+
+	$squadAdd = R::findOne('squad', 'id = ?', array($postData['add-user-squad-btn']));
+
+	$squadAdd->$requestSquad = $postData['add-user-squad-id'];
+
+	R::store($squadAdd);
+	
+	header("Location: /pages/squad.php");
+}
+
+
 ?>

@@ -61,3 +61,15 @@ function closeHooky(){
 	document.getElementById("body").style.overflow = "visible";
 };
 
+function viewSquaList(){
+	let squaList = arguments[0]; 
+	document.getElementById("squad-user-position-list-"+squaList).style.display = "block";
+	document.getElementById("close-list-"+squaList).style.display = "block";
+}
+
+function closeSquaList(){
+	let squaList = arguments[0]; 
+	document.getElementById("squad-user-position-list-"+squaList).style.display = "none";
+	document.getElementById("close-list-"+squaList).style.display = "none";
+}
+
