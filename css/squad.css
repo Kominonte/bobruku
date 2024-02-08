@@ -127,8 +127,12 @@ body {
 
 .squad-name {
 	display: block;
+	padding: 10px 0px;
 	border-radius: 10px 10px 0px 0px;
-	color: #292929;
+	background-repeat: no-repeat;
+	background-size: 40px;
+	background-position: 10px 10px;
+	color: #1c1c1c;
 	font-size: 30px;
 	font-weight: 500;
 	text-align: center;
@@ -188,11 +192,14 @@ body {
 	float: left;
 	width: 100%;
 	margin: 10px 0px;
-	padding: 5px 0px;
-	color: #919191;
+	padding: 5px 0px;	
 	font-size: 20px;
 	text-align: center;
 	cursor: pointer;
+}
+
+.squad-user-position-label {
+	color: #ffffff;
 }
 
 .close-squad-user-position-list {
@@ -238,12 +245,44 @@ body {
 	border: none;
 	border-radius: 5px;
 	background-color: #292929;
-	color: #919191;
+	color: #ffffff;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
 	text-align: center;
 	cursor: pointer;
+	transition: 0.2s;
 }
 
 .squad-user-position-row:hover {
 	background-color: #343434;
+}
+
+.squad-user-position-row-del {
+	position: relative;
+	display: block;
+	float: left;
+	width: calc(100% - 20px);
+	margin: 10px 10px 0px 10px;
+	padding: 5px 0px;
+	border: 2px solid #a11616;
+	border-radius: 5px;
+	background-color: #a11616;
+	color: #1c1c1c;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.squad-user-position-row-del:hover {
+	border: 2px solid #a11616;
+	background-color: #1c1c1c;
+	color: #a11616;
+}
+
+.squad-setting {
+	display: block;
+	width: 100%;
 }

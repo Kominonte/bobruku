@@ -22,155 +22,92 @@
 
 
 		<div id="main">
+			<div id="main-wrapper">
 		<?php
-			$squad = R::findAll('squad', 'id = ?', array(1));
 
-			$squadList = R::findAll('user');
+			$squad = R::findAll('squad'); // Получаем список отрядов
 
-			foreach ($squad as $squadRow) {} ?>
+			$squadList = R::findAll('user'); // Получаем список членов клана
 
+			// Перебераем спиок отрядов
+			foreach ($squad as $squadRow) {
+				$squadIt += 1 ?>
+
+			<!-- Блок для отряда -->
 			<div class="squad-list">
-				<span class="squad-name" style="background-color:<?= $squadRow['color_squad']?>">
+				<?php
+					switch ($squadRow['id']) {
+						case 1:
+							$userSquadImg = '/assets/icon/icon-attack.png';
+							break;
+
+						case 2:
+							$userSquadImg = '/assets/icon/icon-tent.png';
+							break;
+
+						case 3:
+							$userSquadImg = '/assets/icon/icon-tent.png';
+							break;
+
+						case 4:
+							$userSquadImg = '/assets/icon/icon-bio.png';
+							break;
+
+						case 5:
+							$userSquadImg = '';
+							break;
+						}
+					?>
+				<span id="squad-name-<?= $squadIt?>" class="squad-name" style="background-color:<?= $squadRow['color_squad']?>;background-image: url(<?= $userSquadImg ?>);">
 					<?= $squadRow['name_squad'] ?>
 				</span>
-			<div class="squad-user-position-wrapper">
-				<?php 
-					$squadUser = R::findOne('user', 'id = ?', array($squadRow['member_squad_1']))
-				?>
-					<div class="squad-user-position" onclick="viewSquaList(1)">
-						<span>
-							<?php if($squadUser == 0):?>Пусто #1
-							<?php else: print_r($squadUser['login'])?>
-							<?php endif; ?>
-						</span>
-
-					</div>
-					<span id="close-list-1" class="close-squad-user-position-list" onclick="closeSquaList(1)">x</span>
-					<div id="squad-user-position-list-1" class="squad-user-position-mainpvp-list">
-					<?php foreach($squadList as $squadListRow){ ?>
-					<form action="/vendor/core.php" method="POST">
-						<input type="hidden" name="position-user-squad" value='1'>
-						<input type="hidden" name="add-user-squad-id" value="<?= $squadListRow['id']?>">
-						<button class="squad-user-position-row" type="submit" name="add-user-squad-btn"
-						value="1">
-							<?= $squadListRow['login'] ?>
-						</button>
-					</form>
-					<?php } ?>
-					</div>
-				</div>
-
-				<div class="squad-user-position-wrapper">
-				<?php 
-					$squadUser = R::findOne('user', 'id = ?', array($squadRow['member_squad_2']))
-				?>
-					<div class="squad-user-position" onclick="viewSquaList(2)">
-						<span>
-							<?php if($squadUser == 0):?>Пусто #2
-							<?php else: print_r($squadUser['login'])?>
-							<?php endif; ?>
-						</span>
-
-					</div>
-					<span id="close-list-2" class="close-squad-user-position-list" onclick="closeSquaList(2)">x</span>
-					<div id="squad-user-position-list-2" class="squad-user-position-mainpvp-list">
-					<?php foreach($squadList as $squadListRow){ ?>
-					<form action="/vendor/core.php" method="POST">
-						<input type="hidden" name="position-user-squad" value='2'>
-						<input type="hidden" name="add-user-squad-id" value="<?= $squadListRow['id']?>">
-						<button class="squad-user-position-row" type="submit" name="add-user-squad-btn"
-						value="1">
-							<?= $squadListRow['login'] ?>
-						</button>
-					</form>
-					<?php } ?>
-					</div>
-				</div>
-
-			<div class="squad-user-position-wrapper">
-				<?php 
-					$squadUser = R::findOne('user', 'id = ?', array($squadRow['member_squad_3']))
-				?>
-					<div class="squad-user-position" onclick="viewSquaList(3)">
-						<span>
-							<?php if($squadUser == 0):?>Пусто #3
-							<?php else: print_r($squadUser['login'])?>
-							<?php endif; ?>
-						</span>
-
-					</div>
-					<span id="close-list-3" class="close-squad-user-position-list" onclick="closeSquaList(3)">x</span>
-					<div id="squad-user-position-list-3" class="squad-user-position-mainpvp-list">
-					<?php foreach($squadList as $squadListRow){ ?>
-					<form action="/vendor/core.php" method="POST">
-						<input type="hidden" name="position-user-squad" value='3'>
-						<input type="hidden" name="add-user-squad-id" value="<?= $squadListRow['id']?>">
-						<button class="squad-user-position-row" type="submit" name="add-user-squad-btn"
-						value="1">
-							<?= $squadListRow['login'] ?>
-						</button>
-					</form>
-					<?php } ?>
-					</div>
-				</div>
-				
-				<div class="squad-user-position-wrapper">
-				<?php 
-					$squadUser = R::findOne('user', 'id = ?', array($squadRow['member_squad_4']))
-				?>
-					<div class="squad-user-position" onclick="viewSquaList(4)">
-						<span>
-							<?php if($squadUser == 0):?>Пусто #4
-							<?php else: print_r($squadUser['login'])?>
-							<?php endif; ?>
-						</span>
-
-					</div>
-					<span id="close-list-4" class="close-squad-user-position-list" onclick="closeSquaList(4)">x</span>
-					<div id="squad-user-position-list-4" class="squad-user-position-mainpvp-list">
-					<?php foreach($squadList as $squadListRow){ ?>
-					<form action="/vendor/core.php" method="POST">
-						<input type="hidden" name="position-user-squad" value='4'>
-						<input type="hidden" name="add-user-squad-id" value="<?= $squadListRow['id']?>">
-						<button class="squad-user-position-row" type="submit" name="add-user-squad-btn"
-						value="1">
-							<?= $squadListRow['login'] ?>
-						</button>
-					</form>
-					<?php } ?>
-					</div>
-				</div>
-				
-				<div class="squad-user-position-wrapper">
-				<?php 
-					$squadUser = R::findOne('user', 'id = ?', array($squadRow['member_squad_5']))
-				?>
-					<div class="squad-user-position" onclick="viewSquaList(5)">
-						<span>
-							<?php if($squadUser == 0):?>Пусто #5
-							<?php else: print_r($squadUser['login'])?>
-							<?php endif; ?>
-						</span>
-
-					</div>
-					<span id="close-list-5" class="close-squad-user-position-list" onclick="closeSquaList(5)">x</span>
-					<div id="squad-user-position-list-5" class="squad-user-position-mainpvp-list">
-					<?php foreach($squadList as $squadListRow){ ?>
-					<form action="/vendor/core.php" method="POST">
-						<input type="hidden" name="position-user-squad" value='5'>
-						<input type="hidden" name="add-user-squad-id" value="<?= $squadListRow['id']?>">
-						<button class="squad-user-position-row" type="submit" name="add-user-squad-btn"
-						value="1">
-							<?= $squadListRow['login'] ?>
-						</button>
-					</form>
-					<?php } ?>
-					</div>
-				</div>
 
 				<?php
+					$squadListIt = 0;
+					do {
+    				$squadListIt += 1 ;
+
+					$squadUser = R::findOne('user', 'id = ?', array($squadRow['member_squad_'.$squadListIt]));
+				?>
+
+				<div class="squad-user-position-wrapper"> <!--  Подложка под позицию в отряде -->
+				<div class="squad-user-position" onclick="viewSquaList(<?= $squadIt.$squadListIt ?>)"> <!--  Позиция в отряе -->
+					<span class="squad-user-position-label">
+						<?php if($squadUser == 0):?>Пусто #<?= $squadListIt ?>
+						<?php else: print_r($squadUser['login'])?>
+						<?php endif; ?>
+					</span>
+				</div>
+
+					<span id="close-list-<?= $squadIt.$squadListIt ?>" class="close-squad-user-position-list" onclick="closeSquaList(<?= $squadIt.$squadListIt ?>)">x</span> 
+
+					<div id="squad-user-position-list-<?= $squadIt.$squadListIt ?>" class="squad-user-position-mainpvp-list">
+					<?php /*Перебераем всех челенов клана*/
+					foreach($squadList as $squadListRow){ ?>
+					<form action="/vendor/core.php" method="POST">
+						<input type="hidden" name="position-user-squad" value='<?= $squadListIt ?>'>
+						<input type="hidden" name="add-user-squad-id" value="<?= $squadListRow['id']?>">
+						<button class="squad-user-position-row" type="submit" name="add-user-squad-btn"
+						value="<?= $squadIt ?>">
+							<?= $squadListRow['login'] ?>
+						</button>
+					</form>
+				<?php } ?>
+					<form action="/vendor/core.php" method="POST">
+						<input type="hidden" name="position-user-squad" value='<?= $squadListIt ?>'>
+						<input type="hidden" name="add-user-squad-id" value="<?= $squadListRow['id']?>">
+						<button class="squad-user-position-row-del" type="submit" name="del-user-squad-btn"
+						value="<?= $squadIt ?>">
+							Удалить
+						</button>
+					</form>
+					</div>
+				</div>
+					<?php } while ($squadListIt <= 4) ?>	
+					
+				<?php
 					foreach ($squad as $squadRow){
-					if($squadRow['squad'] == 1){
+					if($squadRow['squad'] == $squadIt){
 				?>	
 					<span class="squad-user"><?= $squadRow['login']?></span>
 				<?php }} ?>	
@@ -178,74 +115,28 @@
 					<span class="squad-description">Описание</span>
 					<p class="squad-description-text"><?= $squadRow['description_squad']?></p>
 				</div>
+
+				<form id="squad-setting-<?= $squadListIt?>" class="squad-setting">
+					<label class="squad-setting-label">Настройки отряда</label>
+					<label class="squad-setting-name">Название отряда</label><br>
+					<input type="text" name=""><br>
+					<label class="squad-setting-type-label">Тип отряда</label><br>
+					<select class="squad-setting-type">
+						<option value="1">Атакующий</option>
+						<option value="2">Дефф точки</option>
+						<option value="3">Дефф палатки</option>
+						<option value="4">Разведка</option>
+						<option value="5">Био</option>
+					</select><br>
+					<label class="squad-setting-description">Описание отряда</label><br>
+					<input type="text" name=""><br>
+					<label class="squad-setting-color-label">Цвет отряда</label><br>
+					<input class="squad-setting-color" type="color" name=""><br>
+					<button class="squad-setting-btn" name="squad-setting-btn" value="<?= $squadListIt?>">Сохранить</button>
+				</form>
 			</div>
-
-		<?php
-			$squad = R::findAll('user', 'squad = ?', array(2));
-
-			foreach ($squad as $squadRow) {} ?>
-
-			<div class="squad-list">
-				<span class="squad-name" style="background-color: #06135f;">Def1</span>
-
-				<?php
-					foreach ($squad as $squadRow){
-					if($squadRow['squad'] == 2){
-				?>	
-					<span class="squad-user"><?= $squadRow['login']?><</span>
-				<?php }} ?>
-
-				<div class="squad-description-wrapper">
-					<span class="squad-description">Описание</span>
-					<p class="squad-description-text">Тут чет должно быть про отряд</p>
-				</div>
-				
-			</div>
-
-		<?php
-			$squad = R::findAll('user', 'squad = ?', array(3));
-
-			foreach ($squad as $squadRow) {} ?>
-
-			<div class="squad-list">
-				<span class="squad-name" style="background-color: #e74c3c;">Def2</span>
-
-				<?php
-					foreach ($squad as $squadRow){
-					if($squadRow['squad'] == 3){
-				?>	
-					<span class="squad-user"><?= $squadRow['login']?></span>
-				<?php }} ?>
-
-				<div class="squad-description-wrapper">
-					<span class="squad-description">Описание</span>
-					<p class="squad-description-text">Тут чет должно быть про отряд</p>
-				</div>
-				
-			</div>
-
-			<?php
-			$squad = R::findAll('user', 'squad = ?', array(4));
-
-			foreach ($squad as $squadRow) {} ?>
-
-			<div class="squad-list">
-				<span class="squad-name" style="background-color: #2da103;">Bio</span>
-
-				<?php
-					foreach ($squad as $squadRow){
-					if($squadRow['squad'] == 4){
-				?>	
-					<span class="squad-user"><?= $squadRow['login']?></span>
-				<?php }} ?>
-
-				<div class="squad-description-wrapper">
-					<span class="squad-description">Описание</span>
-					<p class="squad-description-text">Тут чет должно быть про отряд</p>
-				</div>
-				
-			</div>
-			
+		<?php } ?>
+		</div>	
 		</div>
 
 		<form action="vendor/core.php" method="POST">

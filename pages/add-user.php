@@ -89,15 +89,6 @@
 					  	<option class="user-option"  value="5">Глава</option>
 					</select><br>
 
-				<span class="add-user-label">Отряд</span><br>
-					<select class="add-user-select" name="user-squad">
-						<option class="user-option" style="color: #ffffff;" value="0">Не рапределен</option>
-						<option class="user-option" style="color: #8b0808;" value="1">Main PVP</option>
-						<option class="user-option" style="color: #06135f;" value="2">Def 1</option>
-					 	<option class="user-option" style="color: #e74c3c;" value="3">Def 2</option>
-					  	<option class="user-option" style="color: #44db12;" value="4">Bio</option>
-					</select><br>
-
 				<span class="add-user-label">Роль</span><br>
 					<select class="add-user-select" name="user-role">
 						<option class="user-option"  value="1">Пользователь</option>

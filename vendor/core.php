@@ -52,7 +52,6 @@ if(isset($postData['signup-btn'])){
 		$user->dateRegistration = date("Y-m-d H:i:s");
 		$user->role = 1;
 		$user->rank = 1;
-		$user->squad = 0;
 
 		R::store($user);
 
@@ -399,6 +398,7 @@ if(isset($postData['rebuke-passed'])){
 
 /*===========================================Отряды==================================================*/
 
+/*---------------------------------------Добавить в отряд--------------------------------------------*/
 if(isset($postData['add-user-squad-btn'])){
 
 	switch ($postData['position-user-squad']){
@@ -423,6 +423,36 @@ if(isset($postData['add-user-squad-btn'])){
 		break;
 	}
 
+
+		$squadRem = R::findOne( 'squad', 'member_squad_1 OR member_squad_2 OR member_squad_3 OR member_squad_4 OR member_squad_5 = ?', array($postData['add-user-squad-id']));
+
+	foreach($squadRem as $squadRemRow){
+	}
+
+		if($squadRem['member_squad_1'] == $postData['add-user-squad-id']){
+			echo "Юзера снесет с таблицы: member_squad_1";
+			$squadRem->member_squad_1 = 0;
+			R::store($squadRem);
+		}elseif($squadRem['member_squad_2'] == $postData['add-user-squad-id']){
+			echo "Юзера снесет с таблицы: member_squad_2";
+			$squadRem->member_squad_2 = 0;
+			R::store($squadRem);
+		}elseif($squadRem['member_squad_3'] == $postData['add-user-squad-id']){
+			echo "Юзера снесет с таблицы: member_squad_3";
+			$squadRem->member_squad_3 = 0;
+			R::store($squadRem);
+		}elseif($squadRem['member_squad_4'] == $postData['add-user-squad-id']){
+			echo "Юзера снесет с таблицы: member_squad_4";
+			$squadRem->member_squad_4 = 0;
+			R::store($squadRem);
+		}elseif($squadRem['member_squad_5'] == $postData['add-user-squad-id']){
+			echo "Юзера снесет с таблицы: member_squad_5";
+			$squadRem->member_squad_5 = 0;
+			R::store($squadRem);
+		}else{
+			
+		}
+
 	$squadAdd = R::findOne('squad', 'id = ?', array($postData['add-user-squad-btn']));
 
 	$squadAdd->$requestSquad = $postData['add-user-squad-id'];
@@ -432,5 +462,38 @@ if(isset($postData['add-user-squad-btn'])){
 	header("Location: /pages/squad.php");
 }
 
+/*---------------------------------------Удалить с отряда--------------------------------------------*/
 
+if(isset($postData['del-user-squad-btn'])){
+
+	switch ($postData['position-user-squad']){
+		case 1:
+			$requestSquad = 'member_squad_1';
+		break;
+
+		case 2:
+			$requestSquad = 'member_squad_2';
+		break;
+
+		case 3:
+			$requestSquad = 'member_squad_3';
+		break;
+
+		case 4:
+			$requestSquad = 'member_squad_4';
+		break;
+
+		case 5:
+			$requestSquad = 'member_squad_5';
+		break;
+	}
+
+	$squadDel = R::findOne('squad', 'id = ?', array($postData['del-user-squad-btn']));
+
+	$squadDel->$requestSquad = 0;
+
+	R::store($squadDel);
+	
+	header("Location: /pages/squad.php");
+}
 ?>
