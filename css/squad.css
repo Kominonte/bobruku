@@ -4,6 +4,19 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+body ::-webkit-scrollbar {
+  width: 10px;               /* ширина всей полосы прокрутки */
+}
+
+body ::-webkit-scrollbar-track {
+  background: #363636;        /* цвет зоны отслеживания */
+  border-radius: 10px;  
+}
+
+body ::-webkit-scrollbar-thumb {
+  background-color: #515151;    /* цвет бегунка */
+  border-radius: 5px;       /* округлось бегунка */
+}
 #fon {
 	position: fixed;
 	top: -20px;
@@ -11,6 +24,30 @@ body {
 	width: 103%;
 	filter: invert(80%);
 	z-index: -1;
+}
+
+#background-dark {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	display: none;
+	background: rgba(10, 10, 10, 0.8);
+	width: 1000%;
+	height: 1000%;
+	z-index: 3;
+	animation-name: open;
+	animation-duration: 0.3s;
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 #auth {
@@ -114,7 +151,8 @@ body {
 	transform: scale(1.1);
 }
 
-.squad-list{
+
+.squad-list {
 	position: relative;
 	float: left;
 	width: calc(50% - 10px);
@@ -124,6 +162,39 @@ body {
 	background-color: #292929;
 }
 
+.squad-label {
+	display: block;
+	margin: 0px 0px 10px 0px;
+	padding: 7px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: #262626;
+	color: #919191;
+	font-size: 25px;
+	font-weight: 500;
+	text-align: center;
+}
+
+.add-squad {
+	position: absolute;
+	display: inline-block;
+	top: 10px;
+	right: 10px;
+	padding: 5px 10px 8px 10px;
+	border: 2px solid #919191;
+	border-radius: 10px;
+	background-color: #919191;
+	color: #1c1c1c;
+	font-size: 25px;
+	font-weight: 500;
+	z-index: 1;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.add-squad:hover{
+	background-color: #262626;
+	color: #919191;
+}
 
 .squad-name {
 	display: block;
@@ -167,15 +238,19 @@ body {
 }
 
 .squad-description-text {
-	width: calc(100% - 30px);
 	display: inline-block;
+	width: calc(100% - 30px);
+	height: 100px;
 	margin: 0px 10px;
 	padding: 5px;
 	border-radius: 5px;
 	background-color: #363636;
 	font-size: 20px;
 	color: #919191;
+	overflow: auto;
 }
+
+
 
 .squad-user-position-wrapper {
 	position: relative;
@@ -235,6 +310,27 @@ body {
 	z-index: 10;
 }
 
+.squad-user-position-row-link {
+	position: relative;
+	display: block;
+	float: left;
+	width: calc(100% - 20px);
+	margin: 10px 10px 10px 10px;
+	padding: 5px 0px;
+	border-radius: 5px;
+	background-color: #292929;
+	color: #919191;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.squad-user-position-row-link:hover {
+	background-color: #343434;
+}
+
 .squad-user-position-row {
 	position: relative;
 	display: block;
@@ -283,6 +379,223 @@ body {
 }
 
 .squad-setting {
-	display: block;
+	display: none;
+	position: absolute;
+	z-index: 9;
 	width: 100%;
+	margin: 10px 0px 0px 0px;
+	border-top: 2px solid #363636;
+	border-radius: 0px 0px 10px 10px;
+	background-color: #262626;
+}
+
+.squad-add {
+	display: none;
+	position: fixed;
+	z-index: 10;
+	top: 200px;
+	left: 50%;
+	width: 600px;
+	margin: auto -300px;
+	border-radius: 10px;
+	background-color: #262626;
+}
+
+.add-squad-close {
+	position: absolute;
+	top: 0px;
+	right: -50px;
+	padding: 5px 12px 9px 12px;
+	border-radius: 5px;
+	background-color: #262626;
+	color: #919191;
+	font-weight: 500;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.open-setting {
+	display: block;
+	float: right;
+	width: 24px;
+	margin: -5px 5px 0px 0px;
+	padding: 10px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.open-setting:hover {
+	transform: scale(1.3);
+}
+
+.close-setting {
+	display: none;
+	float: right;
+	width: 24px;
+	margin: -5px 5px 0px 0px;
+	padding: 10px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.close-setting:hover {
+	transform: scale(1.3);
+}
+
+
+.squad-setting-label {
+	display: block;
+	width: calc(100% - 20px);
+	margin: 10px 10px 0px 10px;
+	padding: 5px 0px;
+	border-radius: 5px;
+	background-color: #363636;
+	color: #919191;
+	font-size: 20px;
+	text-align: center;
+}
+
+.squad-setting-name {
+	display: block;
+	width: calc(100% - 40px);
+	margin: 10px 10px 0px 10px;
+	padding: 5px 0px  5px 20px;
+	border-radius: 5px 5px 0px 0px;
+	background-color: #363636;
+	color: #919191;
+	font-size: 20px;
+	text-align: left;
+}
+
+.squad-setting-name-input {
+	display: block;
+	width: calc(100% - 44px);
+	margin: 0px 10px 0px 10px;
+	padding: 10px;
+	border: 2px solid #363636;
+	border-top: none;
+	border-radius:  0px 0px 5px 5px;
+	background-color: #1c1c1c;
+	color: #919191;
+	font-size: 24px;
+	outline: none;
+}
+
+.squad-setting-color-label {
+	display: inline-block;
+	width: calc(50% - 40px);
+	margin: 0px 10px 0px 10px;
+	padding: 5px 0px  5px 20px;
+	border-radius: 5px;
+	background-color: #363636;
+	color: #919191;
+	font-size: 20px;
+	text-align: left;	
+}
+
+.squad-setting-color {
+	display: inline;
+	width: 100px;
+	height: 35px;
+	margin: 4px 0px 0px -120px;
+	border: 0px;
+	border-radius: 5px;
+	background-color: #292929;
+	cursor: pointer;
+}
+
+.squad-setting-type-label {
+	display: inline-block;
+	width: calc(25% - 25px);
+	margin: 4px 5px 0px 10px;
+	padding: 5px 0px 5px 10px;
+	border-radius: 5px;
+	background-color: #363636;
+	color: #919191;
+	font-size: 20px;
+	text-align: left;
+}
+
+.squad-setting-type {
+	float: right;
+	display: inline-block;
+	width: calc(25% - 0px);
+	margin: 10px 10px 0px 0px;
+	padding: 5px 0px 5px 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #363636;
+	color: #919191;
+	font-size: 20px;
+	outline: none;
+	cursor: pointer;
+}
+
+.squad-setting-description {
+	display: block;
+	width: calc(100% - 40px);
+	margin: 10px 10px 0px 10px;
+	padding: 5px 0px  5px 20px;
+	border-radius: 5px 5px 0px 0px;
+	background-color: #363636;
+	color: #919191;
+	font-size: 20px;
+	text-align: left;
+}
+
+.squad-setting-description-input {
+	display: block;
+	width: calc(100% - 44px);
+	margin: 0px 10px 0px 10px;
+	height: 100px;
+	padding: 5px 10px;
+	border: 2px solid #363636;
+	border-top: none;
+	border-radius:  0px 0px 5px 5px;
+	background-color: #1c1c1c;
+	color: #919191;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 24px;
+	outline: none;
+	resize: none;
+}
+
+.squad-setting-btn {
+	float: right;
+	margin: 10px 10px 10px 0px;
+	padding: 10px 20px;
+	border: 2px solid #919191;
+	border-radius: 5px;
+	background-color: #919191;
+	color: #1c1c1c;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.squad-setting-btn:hover {
+	background-color: #262626;
+	color: #919191;
+}
+
+.squad-setting-del {
+	float: right;
+	margin: 10px 10px 10px 0px;
+	padding: 10px 20px;
+	border: 2px solid #a11616;
+	border-radius: 5px;
+	background-color: #a11616;
+	color: #1c1c1c;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.squad-setting-del:hover {
+	background-color: #262626;
+	color: #a11616;
 }

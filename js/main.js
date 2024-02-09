@@ -73,3 +73,27 @@ function closeSquaList(){
 	document.getElementById("close-list-"+squaList).style.display = "none";
 }
 
+function viewSquadSetting(){
+	let squaSettingOp = arguments[0];
+	document.getElementById("squad-setting-"+squaSettingOp).style.display = "block";
+	document.getElementById("close-setting-"+squaSettingOp).style.display = "block";
+	document.getElementById("open-setting-"+squaSettingOp).style.display = "none";
+	document.getElementById("squad-list-"+squaSettingOp).style.borderRadius = "10px 10px 0px 0px";
+}
+function closeSquadSetting(){
+	let squaSettingCl = arguments[0];
+	document.getElementById("squad-setting-"+squaSettingCl).style.display = "none";
+	document.getElementById("close-setting-"+squaSettingCl).style.display = "none";
+	document.getElementById("open-setting-"+squaSettingCl).style.display = "block";
+	document.getElementById("squad-list-"+squaSettingCl).style.borderRadius = "10px 10px 10px 10px";
+}
+
+function viewAddSquad(){
+	document.getElementById("squad-add").style.display = "block";
+	document.getElementById("background-dark").style.display = "block";
+}
+
+function closeAddSquad(){
+	document.getElementById("squad-add").style.display = "none";
+	document.getElementById("background-dark").style.display = "none";
+}

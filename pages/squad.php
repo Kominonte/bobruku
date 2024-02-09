@@ -15,13 +15,17 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 	<title>King and Clown</title>
 </head>
-<body>
+<body id="body">
 	<img id="fon" src="../assets/background/fon1.jpeg">
+
+	<div id="background-dark"></div>
 
 	<?php if($user): require_once("../includs/menu.php");?>
 
 
 		<div id="main">
+			<span class="squad-label">Отряды</span>
+			<span class="add-squad" onclick="viewAddSquad()">+ Добавить отряд</span>
 			<div id="main-wrapper">
 		<?php
 
@@ -34,7 +38,7 @@
 				$squadIt += 1 ?>
 
 			<!-- Блок для отряда -->
-			<div class="squad-list">
+			<div id="squad-list-<?= $squadIt?>" class="squad-list">
 				<?php
 					switch ($squadRow['id']) {
 						case 1:
@@ -60,11 +64,15 @@
 					?>
 				<span id="squad-name-<?= $squadIt?>" class="squad-name" style="background-color:<?= $squadRow['color_squad']?>;background-image: url(<?= $userSquadImg ?>);">
 					<?= $squadRow['name_squad'] ?>
+					<img id="open-setting-<?= $squadIt?>" class="open-setting" src="/assets/icon/icon-pencil.png"
+					 onclick="viewSquadSetting(<?= $squadIt ?>)">
+					 <img id="close-setting-<?= $squadIt?>" class="close-setting" src="/assets/icon/icon-close.png"
+					 onclick="closeSquadSetting(<?= $squadIt ?>)">
 				</span>
 
 				<?php
 					$squadListIt = 0;
-					do {
+					while ($squadListIt <= 4) {
     				$squadListIt += 1 ;
 
 					$squadUser = R::findOne('user', 'id = ?', array($squadRow['member_squad_'.$squadListIt]));
@@ -82,6 +90,10 @@
 					<span id="close-list-<?= $squadIt.$squadListIt ?>" class="close-squad-user-position-list" onclick="closeSquaList(<?= $squadIt.$squadListIt ?>)">x</span> 
 
 					<div id="squad-user-position-list-<?= $squadIt.$squadListIt ?>" class="squad-user-position-mainpvp-list">
+					<?php if($squadUser == 0):?>
+					<?php else: ?>
+						<a class="squad-user-position-row-link" > Инфа о <?= $squadUser['login'] ?> </a>
+					<?php endif; ?>
 					<?php /*Перебераем всех челенов клана*/
 					foreach($squadList as $squadListRow){ ?>
 					<form action="/vendor/core.php" method="POST">
@@ -103,41 +115,69 @@
 					</form>
 					</div>
 				</div>
-					<?php } while ($squadListIt <= 4) ?>	
+					<?php } ?>	
 					
 				<?php
-					foreach ($squad as $squadRow){
-					if($squadRow['squad'] == $squadIt){
+					foreach ($squad as $squadSecondRow){
+					if($squadSecondRow['squad'] == $squadIt){
 				?>	
-					<span class="squad-user"><?= $squadRow['login']?></span>
+					<span class="squad-user"><?= $squadSecondRow['login']?></span>
 				<?php }} ?>	
 				<div class="squad-description-wrapper">
 					<span class="squad-description">Описание</span>
 					<p class="squad-description-text"><?= $squadRow['description_squad']?></p>
 				</div>
 
-				<form id="squad-setting-<?= $squadListIt?>" class="squad-setting">
-					<label class="squad-setting-label">Настройки отряда</label>
-					<label class="squad-setting-name">Название отряда</label><br>
-					<input type="text" name=""><br>
-					<label class="squad-setting-type-label">Тип отряда</label><br>
-					<select class="squad-setting-type">
+				<form action="/vendor/core.php" method="POST" id="squad-setting-<?= $squadIt?>" class="squad-setting">
+					<?php
+						$squadSod = R::findOne('squad', 'id = ?', array($squadRow['id']));
+					?>
+					<label class="squad-setting-label">Настройка отряда</label>
+					<label class="squad-setting-name">Название отряда</label>
+					<input class="squad-setting-name-input" type="text" name="squad-name" 
+					 value="<?= $squadSod['name_squad']?>">
+					<label class="squad-setting-color-label">Цвет отряда</label>
+					<input class="squad-setting-color" type="color" name="squad-color"
+					 value="<?= $squadSod['color_squad']?>">
+					<label class="squad-setting-type-label">Тип отряда:</label>
+					<select class="squad-setting-type" name="squad-type">
 						<option value="1">Атакующий</option>
 						<option value="2">Дефф точки</option>
 						<option value="3">Дефф палатки</option>
 						<option value="4">Разведка</option>
 						<option value="5">Био</option>
 					</select><br>
-					<label class="squad-setting-description">Описание отряда</label><br>
-					<input type="text" name=""><br>
-					<label class="squad-setting-color-label">Цвет отряда</label><br>
-					<input class="squad-setting-color" type="color" name=""><br>
-					<button class="squad-setting-btn" name="squad-setting-btn" value="<?= $squadListIt?>">Сохранить</button>
+					<label class="squad-setting-description">Описание отряда</label>
+					<textarea class="squad-setting-description-input" type="textarea" name="squad-description"><?= $squadSod['description_squad']?>
+					</textarea>
+					<button class="squad-setting-btn" name="squad-setting-btn" value="<?= $squadRow['id']?>">Сохранить</button>
+					<button class="squad-setting-del" name="squad-setting-del" value="<?= $squadRow['id']?>">Удалить отряд</button>
 				</form>
 			</div>
 		<?php } ?>
 		</div>	
 		</div>
+
+		<form action="/vendor/core.php" method="POST" id="squad-add" class="squad-add">
+			<label class="squad-setting-label">Добавить отряд</label>
+			<span class="add-squad-close" onclick="closeAddSquad()">x</span>
+			<label class="squad-setting-name">Название отряда</label>
+			<input class="squad-setting-name-input" type="text" name="squad-name">
+			<label class="squad-setting-color-label">Цвет отряда</label>
+			<input class="squad-setting-color" type="color" name="squad-color">
+			<label class="squad-setting-type-label">Тип отряда:</label>
+			<select class="squad-setting-type" name="squad-type">
+				<option value="1">Атакующий</option>
+				<option value="2">Дефф точки</option>
+				<option value="3">Дефф палатки</option>
+				<option value="4">Разведка</option>
+				<option value="5">Био</option>
+			</select><br>
+			<label class="squad-setting-description">Описание отряда</label>
+			<textarea class="squad-setting-description-input" type="textarea" name="squad-description">
+			</textarea>
+			<button class="squad-setting-btn" name="squad-add-btn">Сохранить</button>
+		</form>
 
 		<form action="vendor/core.php" method="POST">
 			<button id="auth-btn" type="submit" name="logout-btn"> Выйти </button><br>

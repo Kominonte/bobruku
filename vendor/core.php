@@ -453,11 +453,16 @@ if(isset($postData['add-user-squad-btn'])){
 			
 		}
 
-	$squadAdd = R::findOne('squad', 'id = ?', array($postData['add-user-squad-btn']));
+	$squadAddUser = R::findOne('squad', 'id = ?', array($postData['add-user-squad-btn']));
 
-	$squadAdd->$requestSquad = $postData['add-user-squad-id'];
+	$squadAddUser->$requestSquad = $postData['add-user-squad-id'];
 
-	R::store($squadAdd);
+	R::store($squadAddUser);
+
+	$userAddSquad = R::findOne('user', 'id = ?', array($postData['add-user-squad-id']));
+
+	$userAddSquad->squad = $postData['add-user-squad-btn'];
+	R::store($userAddSquad);
 	
 	header("Location: /pages/squad.php");
 }
@@ -493,7 +498,59 @@ if(isset($postData['del-user-squad-btn'])){
 	$squadDel->$requestSquad = 0;
 
 	R::store($squadDel);
+
+	$userDeleteSquad = R::findOne('user', 'id = ?', array($postData['add-user-squad-id']));
+
+	$userDeleteSquad->squad = 0;
+	R::store($userDeleteSquad);
 	
 	header("Location: /pages/squad.php");
 }
+
+/*--------------------------------------Настройка отряда--------------------------------------------*/
+
+if(isset($postData['squad-setting-btn'])){
+	$squadSetting = R::findOne('squad', 'id = ?', array($postData['squad-setting-btn']));
+
+	$squadSetting->name_squad = $postData['squad-name'];
+	$squadSetting->color_squad = $postData['squad-color'];
+	$squadSetting->type_squad = $postData['squad-type'];
+	$squadSetting->description_squad = $postData['squad-description'];
+
+	R::store($squadSetting);
+
+	header("Location: /pages/squad.php");
+}
+
+/*---------------------------------------Добавить отряд---------------------------------------------*/
+
+if(isset($postData['squad-add-btn'])){
+
+	$squadAdd = R::dispense('squad');
+
+	$squadAdd->name_squad = $postData['squad-name'];
+	$squadAdd->color_squad = $postData['squad-color'];
+	$squadAdd->type_squad = $postData['squad-type'];
+	$squadAdd->description_squad = $postData['squad-description'];
+
+	$squadAdd->member_squad_1 = 0;
+	$squadAdd->member_squad_2 = 0;
+	$squadAdd->member_squad_3 = 0;
+	$squadAdd->member_squad_4 = 0;
+	$squadAdd->member_squad_5 = 0;
+
+	R::store($squadAdd);
+}
+
+/*---------------------------------------Удалить отряд---------------------------------------------*/
+
+if(isset($postData['squad-setting-del'])){
+
+	$squadDelelte = R::findOne('squad', 'id = ?', array($postData['squad-setting-del']));
+
+	R::trash($squadDelelte);
+
+	header("Location: /pages/squad.php");
+}
+
 ?>
