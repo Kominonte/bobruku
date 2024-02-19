@@ -28,7 +28,8 @@
 				<span class="exchequer-contribution">Вклад</span>
 				<span class="exchequer-tax">Налог</span>
 				<span class="exchequer-weeklynorm">Недельная норма</span>
-				<span class="exchequer-rebuke">Выговор</span>
+				<span class="exchequer-rebuke">Варн</span>
+				<span class="exchequer-warning">Предупреждение</span>
 			</div>
 
 		<?php 
@@ -102,7 +103,12 @@
 
 					<form class="exchequer-form" action="../vendor/core.php" method="POST">
 						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
-						<button class="exchequer-rebuke-passed" name="rebuke-passed">Выговор</button>
+						<button class="exchequer-rebuke-passed" name="rebuke-passed">Варн</button>
+					</form>
+
+					<form class="exchequer-form" action="../vendor/core.php" method="POST">
+						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
+						<button class="exchequer-rebuke-passed" name="rebuke-passed">Пред</button>
 					</form>
 					
 				</div>

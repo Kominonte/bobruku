@@ -4,9 +4,10 @@ var colArmor = 1;
 
 	$('#add-user-armor').click(function(){
 		if(colArmor < 3){
+			console.log($armor);
 			colArmor ++;
 			$armor.find( "span" ).text('Броня '+colArmor)
-			$armor.attr('name', 'user-armor-'+colArmor);
+			$armor.find("select").attr('name', 'user-armor-'+colArmor);
 		 	$(this).before($armor.clone());
 	 	}else{
 			false;
@@ -22,7 +23,7 @@ var colGunMain = 1;
 		if(colGunMain < 5){
 			colGunMain ++;
 			$gunMain.find( "span" ).text('Основное оружие '+colGunMain)
-			$gunMain.attr('name', 'user-main-gun-'+colGunMain);
+			$gunMain.find("select").attr('name', 'user-main-gun-'+colGunMain);
 		 	$(this).before($gunMain.clone());
 	 	}else{
 			false;

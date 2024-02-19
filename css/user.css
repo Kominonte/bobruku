@@ -1,0 +1,15 @@
+:root {
+
+/*Цвет фона*/
+	--background-dark: #1c1c1c;
+	--background-light: #292929;
+	--background-verylight: #363636;
+
+/*Цвет текста*/
+	--color-white: #ffffff;
+  --color-light: #919191;
+  --color-dark: #1c1c1c;
+
+/*Выделение*/
+  --highlighting: #323232;
+}

@@ -9,6 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/png" sizes="128x128" href="../assets/logo/logo.jpeg">	
+	<link rel='stylesheet' type='text/css' href='../css/menu.css'>
 	<link rel='stylesheet' type='text/css' href='../css/compound.css'>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,6 +45,7 @@
 				?>
 			<div id="wrapper-main">
 
+			<a href="/pages/user.php?id=<?= $compoundRow['id'] ?>" class="user-link">
 				<div class="compound-list">
 					<span class="compound-login"><?= $compoundRow['login'] ?></span><br>
 					<span class="compound-rank">
@@ -209,7 +211,7 @@
 					</div>
 
 				</div>
-
+				</a>
 				<?php } ?>
 
 
