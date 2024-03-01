@@ -4,12 +4,14 @@
 	--background-dark: #1c1c1c;
 	--background-light: #292929;
 	--background-verylight: #363636;
-	--background-element: #0F1628;
+	--background-element: #162347;
 	--background-element-second: #384362;
-	--background-wrapper: #172241;
+	--background-wrapper: #223057;
 	--background-wrapper-second: #0F1628;
-	--background-fon: #2F3B5B;
+	--background-fon: #162347;
 	--background-warning: #cf231d;
+
+	--shadow-element: #0B1531;
 
 /*Цвет текста*/
   --color-white: #ffffff;
@@ -41,10 +43,12 @@ body {
 }
 
 #user-info {
-	width: calc(100% - 20px);
+	float: left;
+	width: calc(50% - 25px);
 	height: 300px;
 	padding: 10px;
 	border-radius: 20px;
+	box-shadow: 0px 0px 10px 1px var(--shadow-element);
 	background-color: var(--background-wrapper);
 }
 
@@ -59,10 +63,186 @@ body {
 	text-align: center;
 }
 
+#user-info-rank-label {
+	display: inline-block;
+	padding: 10px 10px;
+	width: 20%;
+	margin: 10px 5px 10px 0px;
+	border-radius: 10px 0px 0px 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 20px;
+	text-align: center;
+}
+
+#user-info-rank {
+	display: inline-block;
+	width: 25%;
+	padding: 10px 10px;
+	margin: 10px 10px 10px 0px;
+	border-radius: 0px 10px 10px 0px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 20px;
+	text-align: center;
+}
+
+#user-info-in-klan-date {
+	display: inline-block;
+	width: 40.5%;
+	padding: 10px 10px;
+	margin: 10px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 20px;
+	text-align: center;
+}
+
+#user-info-squad-label {
+	display: inline-block;
+	width: 118px;
+	padding: 30px 10px 24px 10px;
+	margin: 0px 0px 10px 0px;
+	border-radius: 10px 0px 0px 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 20px;
+	text-align: center;
+}
+
+#user-info-squad {
+	display: inline-block;
+	width: 71.5%;
+	padding: 20px 10px;
+	margin: 0px 0px 10px 6px;
+	border-radius: 0px 10px 10px 0px;
+	color: var(--color-light);
+	font-size: 30px;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-size: 60px;
+	background-position: 15px 8px ;
+}
+
+#user-info-border {
+	display: inline-block;
+	width: calc(100% - 6px);
+	margin: 0px 0px 20px 0px;
+	border: 1px solid var(--background-element);
+}
+
+#user-info-attendance-box {
+	float: left;
+	display: inline-block;
+	width: calc(50% - 5px);
+}
+
+#user-info-attendance-label {
+	display: inline-block;
+	width: calc(100% - 0px);
+	padding: 5px 0px;
+	margin: -10px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 20px;
+	text-align: center;
+}
+
+#user-info-attendance-was {
+	float: left;
+	display: inline-block;
+	width: calc(50% - 20px);
+	padding: 10px 10px;
+	margin: 0px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	text-align: center;
+}
+
+#user-info-attendance-wasnot {
+	float: right;
+	display: inline-block;
+	width: calc(50% - 27px);
+	padding: 10px 10px;
+	margin: 0px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	text-align: center;
+}
+
+#user-info-punishments-box {
+	float: right;
+	display: inline-block;
+	width: calc(50% - 5px);
+}
+
+#user-info-punishments-label {
+	display: inline-block;
+	width: calc(100% - 0px);
+	padding: 5px 0px;
+	margin: -10px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 20px;
+	text-align: center;
+}
+
+#user-info-punishments-warn {
+	float: left;
+	display: inline-block;
+	width: calc(50% - 20px);
+	padding: 10px 10px;
+	margin: 0px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	text-align: center;
+}
+
+#user-info-punishments-pred {
+	float: right;
+	display: inline-block;
+	width: calc(50% - 27px);
+	padding: 10px 10px;
+	margin: 0px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	text-align: center;
+}
+
+#user-armor-kv {
+	float: right;
+	width: calc(50% - 30px);
+	height: 300px;
+	padding: 10px;
+	border-radius: 20px;
+	box-shadow: 0px 0px 10px 1px var(--shadow-element);
+	background-color: var(--background-wrapper);
+}
+
+#user-armor-kv-label {
+	display: inline-block;
+	width: 100%;
+	padding: 5px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 25px;
+	text-align: center;
+}
+
 #user-armor {
+	display: inline-block;
 	width: calc(100%);
 	height: 200px;
 	margin: 10px 0px 0px 0px;
 	border-radius: 10px;
+	box-shadow: 0px 0px 10px 1px var(--shadow-element);
 	background-color: var(--background-wrapper);
 }

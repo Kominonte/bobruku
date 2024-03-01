@@ -26,9 +26,8 @@
 	<?php 
 
 		$userProfile = R::findOne('user', 'id = ?', array($_GET['id']));
-		$armorProfile = R::findOne('armorlist', 'user_id = ?', array($_GET['id']));
+		$armorlistProfile = R::findOne('armorlist', 'user_id = ?', array($_GET['id']));
 		$squadProfile = R::findOne('squad', 'member_squad_1 OR member_squad_2 OR member_squad_3 OR member_squad_4 OR member_squad_5 = ?', array($_GET['id']));
-
 	?>
 
 		<div id="user-warning">
@@ -36,8 +35,86 @@
 
 		<div id="user-info">
 			<label id="user-info-login"><?= $userProfile['login']?></label>
-		</div>
+			<label id="user-info-rank-label">Звание</label>
+			<label id="user-info-rank">
+				<?php
+					switch ($userProfile['rank']) {
+						case 1:
+							$userRank = 'Новобранец';
+							break;
+						case 2:
+							$userRank = 'Рядовой';
+							break;
+						case 3:
+							$userRank = 'Сержант';
+							break;
+						case 4:
+							$userRank = 'Офицер';
+							break;
+						case 5:
+							$userRank = 'Глава';
+							break;	
+					}
 
+					print_r($userRank);
+				?>
+			</label>
+			<label id="user-info-in-klan-date">В клане с <?= substr($userProfile['date_registration'], 0, -9)?></label>
+
+			<label id="user-info-squad-label">Отряд</label>
+				<?php
+					switch ($userProfile['squad']) {
+						case 0:
+							$userSquadColor = '#162347';
+							$userSquadName = 'Не распределен';
+							$userSquadImg = '';
+							break;
+
+						case 1:
+							$userSquadColor = '#db0000';
+							$userSquadName = 'Main PVP';
+							$userSquadImg = '/assets/icon/icon-attack.png';
+							break;
+
+						case 2:
+							$userSquadColor = '#06135f';
+							$userSquadName = 'Def 1';
+							$userSquadImg = '/assets/icon/icon-tent.png';
+							break;
+
+						case 3:
+							$userSquadColor = '#e74c3c';
+							$userSquadName = 'Def 2';
+							$userSquadImg = '/assets/icon/icon-tent.png';
+							break;
+
+						case 4:
+							$userSquadColor = '#2da103';
+							$userSquadName = 'Bio';
+							$userSquadImg = '/assets/icon/icon-bio.png';
+							break;
+						}
+			?>
+			<label id="user-info-squad" style="background-color: <?= $squadProfile['color_squad']?>;background-image: url(<?= $userSquadImg ?>);"><?php print_r($userSquadName); ?></label>
+			<label id="user-info-border"></label>
+
+			<div>
+				<div id="user-info-attendance-box">
+					<label id="user-info-attendance-label">Участие на КВ</label>
+					<label id="user-info-attendance-was">Был | <?= $userProfile['was'] ?></label>
+					<label id="user-info-attendance-wasnot">Не был | <?= $userProfile['wasnot'] ?></label>
+				</div>
+				<div id="user-info-punishments-box">
+					<label id="user-info-punishments-label">Наказания</label>
+					<label id="user-info-punishments-warn">Варн | </label>
+					<label id="user-info-punishments-pred">Пред |</label>
+				</div>
+			</div>
+		</div>
+		<div id="user-armor-kv">
+			<label id="user-armor-kv-label">Армор для КВ</label>
+			<img src="<?= armomr_img ?>">
+		</div>
 		<div id="user-armor">
 		</div>
 	<?php

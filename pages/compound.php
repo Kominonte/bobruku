@@ -103,6 +103,7 @@
 					<div id="compound-squad-box-<?= $iter ?>" class="compound-squad-box">
 						<span id="compound-squad-name<?= $iter ?>" class="compound-squad-name">
 							<?php
+
 								switch ($compoundRow['squad']) {
 									case 0:
 										$userSquadColor = '#1c1c1c';
