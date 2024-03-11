@@ -4,18 +4,18 @@
 	--background-dark: #1c1c1c;
 	--background-light: #292929;
 	--background-verylight: #363636;
-	--background-element: #162347;
+	--background-element: #39424f;
 	--background-element-second: #384362;
-	--background-wrapper: #223057;
+	--background-wrapper: #313843;
 	--background-wrapper-second: #0F1628;
-	--background-fon: #162347;
+	--background-fon: #292f39;
 	--background-warning: #cf231d;
 
-	--shadow-element: #0B1531;
+	--shadow-element: #1e1e1e;
 
 /*Цвет текста*/
   --color-white: #ffffff;
-  --color-light: #C8D4FF;
+  --color-light: #bdbdbd;
   --color-dark: #1c1c1c;
 
 /*Выделение*/
@@ -45,7 +45,7 @@ body {
 #user-info {
 	float: left;
 	width: calc(50% - 25px);
-	height: 300px;
+	height: 350px;
 	padding: 10px;
 	border-radius: 20px;
 	box-shadow: 0px 0px 10px 1px var(--shadow-element);
@@ -216,14 +216,116 @@ body {
 	text-align: center;
 }
 
+#user-info-border {
+	display: inline-block;
+	width: calc(100% - 6px);
+	margin: 0px 0px 20px 0px;
+	border: 1px solid var(--background-element);
+}
+
+#user-info-exchequer-label {
+	float: left;
+	display: inline-block;
+	width: calc(50% - 25px);
+	padding: 10px 10px;
+	margin: -15px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	text-align: center;
+}
+
+#user-info-exchequer-value {
+	float: right;
+	display: inline-block;
+	width: calc(50% - 25px);
+	padding: 10px 10px;
+	margin: -15px 0px 10px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	text-align: center;
+}
+
 #user-armor-kv {
 	float: right;
 	width: calc(50% - 30px);
-	height: 300px;
+	height: 350px;
 	padding: 10px;
 	border-radius: 20px;
 	box-shadow: 0px 0px 10px 1px var(--shadow-element);
 	background-color: var(--background-wrapper);
+}
+
+#equipment-gun-box {
+	position: relative;
+	display: inline-block;
+	width: 60%;
+	height: 145px;
+	margin: 10px 0px 0px 0px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+#equipment-gun-img {
+	margin: -130px 0px 0px 0px;
+	background-color: red;
+	transform: scale(1.2);
+}
+
+#equipment-gun-name {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	padding: 5px;
+	z-index: 100;
+	background-color: rgba(20, 20, 20, 0.6);
+	text-align: center;
+}
+
+#equipment-armor-box {
+	position: relative;
+	float: right;
+	width: calc(40% - 10px);
+	height: 300px;
+	margin: 10px 0px 0px 0px;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: red;
+}
+
+#equipment-armor-img {
+	margin: -55px 0px 0px -60px;
+	background-color: red;
+	transform: scale(1.2);
+}
+
+#equipment-second-gun-box {
+	position: relative;
+	display: inline-block;
+	width: 60%;
+	height: 145px;
+	margin: 5px 0px 0px 0px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+#equipment-second-gun-img {
+	margin: -130px 0px 0px 0px;
+	background-color: red;
+	transform: scale(1.2);
+}
+
+#equipment-second-gun-name {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	padding: 5px;
+	z-index: 100;
+	background-color: rgba(20, 20, 20, 0.6);
+	text-align: center;
 }
 
 #user-armor-kv-label {
@@ -239,10 +341,22 @@ body {
 
 #user-armor {
 	display: inline-block;
-	width: calc(100%);
+	width: calc(100% - 20px);
 	height: 200px;
 	margin: 10px 0px 0px 0px;
-	border-radius: 10px;
+	padding: 10px;
+	border-radius: 20px;
 	box-shadow: 0px 0px 10px 1px var(--shadow-element);
 	background-color: var(--background-wrapper);
+}
+
+#user-armor-label {
+	display: inline-block;
+	width: calc(100%);
+	padding: 5px 0px;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 25px;
+	text-align: center;
 }

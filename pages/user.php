@@ -28,6 +28,7 @@
 		$userProfile = R::findOne('user', 'id = ?', array($_GET['id']));
 		$armorlistProfile = R::findOne('armorlist', 'user_id = ?', array($_GET['id']));
 		$squadProfile = R::findOne('squad', 'member_squad_1 OR member_squad_2 OR member_squad_3 OR member_squad_4 OR member_squad_5 = ?', array($_GET['id']));
+		$userExchequer = R::findOne('exchequerlist', 'user_id = ?', array($_GET['id']));
 	?>
 
 		<div id="user-warning">
@@ -109,18 +110,66 @@
 					<label id="user-info-punishments-warn">Варн | </label>
 					<label id="user-info-punishments-pred">Пред |</label>
 				</div>
+				<label id="user-info-border"></label>
+				<label id="user-info-exchequer-label">Общий взнос в казну </label>
+				<label id="user-info-exchequer-value"><?= $userExchequer['tax_value'] ?></label>
 			</div>
 		</div>
 		<div id="user-armor-kv">
+		<?php 
+			$armorProfileGun = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1']));
+			$armorProfileArmor = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_1']));
+		?>
 			<label id="user-armor-kv-label">Армор для КВ</label>
-			<img src="<?= armomr_img ?>">
+			<div id="equipment-gun-box">
+				<?php
+					switch ($armorProfileGun['armomr_rank']) {
+								case 3:
+									$userGunRankColor = '#8d8dff';
+									break;
+								case 4:
+									$userGunRankColor = '#d968c4';
+									break;
+								case 5:
+									$userGunRankColor = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $userGunRankColor ?>;" id="equipment-gun-name"><?= $armorProfileGun['armor_name'] ?></span>
+				<img id="equipment-gun-img" src="<?= $armorProfileGun['armomr_img']?>">
+				
+			</div>
+			<div id="equipment-armor-box">
+				<?php
+					switch ($armorProfileArmor['armomr_rank']) {
+								case 3:
+									$userArmorRankColor = '#8d8dff';
+									break;
+								case 4:
+									$userArmorRankColor = '#d968c4';
+									break;
+								case 5:
+									$userArmorRankColor = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $userArmorRankColor ?>;" id="equipment-gun-name"><?= $armorProfileArmor['armor_name'] ?></span>
+				<img id="equipment-armor-img" src="<?= $armorProfileArmor['armomr_img']?>">
+			</div>
+
+			<div id="equipment-second-gun-box">
+				<span style="color:<?= $userArmorRankColor ?>;" id="equipment-gun-name"><?= $armorProfileGun['armor_name'] ?></span>
+				<img id="equipment-second-gun-img" src="<?= $armorProfileGun['armomr_img']?>">
+			</div>
 		</div>
 		<div id="user-armor">
+			<label id="user-armor-label">Снаряга</label>
+			
 		</div>
 	<?php
 		echo "<pre>";
 		print_r($userProfile); 
-		print_r($armorProfile); 
+		print_r($armorlistProfile); 
 		print_r($squadProfile); 
 	?>
 
