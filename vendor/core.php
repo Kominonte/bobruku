@@ -375,7 +375,7 @@ if(isset($postData['weeklynorm-failed'])){
 	header("Location: /pages/exchequer.php");
 }
 
-/*------------------------------------------Выговор---------------------------------------------------*/
+/*------------------------------------------Варн---------------------------------------------------*/
 if(isset($postData['rebuke-passed'])){
 
 	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
@@ -390,6 +390,27 @@ if(isset($postData['rebuke-passed'])){
 
 		$exchequer->user_id = $postData['exchequer-id'];
 		$exchequer->rebuke += 1; 
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
+
+/*------------------------------------------Перд---------------------------------------------------*/
+if(isset($postData['pred-passed'])){
+
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->pred += 1; 
+		R::store($exchequer);
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->pred += 1; 
 		R::store($exchequer);
 	}
 
@@ -553,4 +574,46 @@ if(isset($postData['squad-setting-del'])){
 	header("Location: /pages/squad.php");
 }
 
+/*========================================Налог==========================================*/
+
+	function calcNalog($n, $vp, $vk, $pp, $pk){
+		$nalog = $n;		//налог $n
+		$varnPrc = $vp;		//процент варна $vp
+		$varnKol = $vk;		//колечество варнов $vk
+		$PredPrc = $pp;		//процент преда $pp
+		$PredKol = $pk;		//количество предов $pk
+		$summNallog = 0;		//итого
+
+		$summNallog = $nalog * (1 + ((($varnPrc * $varnKol) + ($PredPrc * $PredKol)) / 100));
+		return $summNallog;
+	}
+
+	function calcNorma($ar, $g, $vp, $vk, $pp, $pk){
+		$armor = $ar;		//армор $ar
+		$gun = $g;          //ствол $g
+		$nalog = 0;			//налог
+		$varnPrc = $vp;		//процент варна $vp
+		$varnKol = $vk;		//колечество варнов $vk
+		$PredPrc = $pp;		//процент преда $pp
+		$PredKol = $pk;		//количество предов $pk
+		$summNallog = 0;		//итого
+
+		$index = $ar + $g;
+
+		if($index == 10){
+			$nalog = 3000;
+		}
+
+		if($index == 9){
+			$nalog = 1500;
+		}
+
+		if($index == 8){
+			$nalog = 1500;
+		}
+
+		$summNallog = $nalog * (1 + ((($varnPrc * $varnKol) + ($PredPrc * $PredKol)) / 100));
+		return $summNallog;
+	}
+	
 ?>

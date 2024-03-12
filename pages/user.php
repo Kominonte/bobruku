@@ -1,6 +1,16 @@
 <?php 
 	require_once("../vendor/connect.php");
 	require_once("../vendor/core.php");
+
+
+	$userProfile = R::findOne('user', 'id = ?', array($_GET['id']));
+	$armorlistProfile = R::findOne('armorlist', 'user_id = ?', array($_GET['id']));
+	$exchequerProfile = R::findOne('exchequerlist', 'user_id = ?', array($_GET['id']));
+	$squadProfile = R::findOne('squad', 'member_squad_1 OR member_squad_2 OR member_squad_3 OR member_squad_4 OR member_squad_5 = ?', array($_GET['id']));
+	$userExchequer = R::findOne('exchequerlist', 'user_id = ?', array($_GET['id']));
+	$armorProfileGun = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1']));
+	$armorProfileArmor = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_1']));
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +24,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-	<title>User</title>
+	<title><?= $userProfile['login']?></title>
 </head>
 <body id="body">
 	<!-- <img id="fon" src="../assets/background/fon1.jpeg"> -->
@@ -23,16 +33,24 @@
 
 	<div id="main">
 
-	<?php 
-
-		$userProfile = R::findOne('user', 'id = ?', array($_GET['id']));
-		$armorlistProfile = R::findOne('armorlist', 'user_id = ?', array($_GET['id']));
-		$squadProfile = R::findOne('squad', 'member_squad_1 OR member_squad_2 OR member_squad_3 OR member_squad_4 OR member_squad_5 = ?', array($_GET['id']));
-		$userExchequer = R::findOne('exchequerlist', 'user_id = ?', array($_GET['id']));
+	<?php
+		$calcNalog = calcNalog(50000, 100, $exchequerProfile['rebuke'], 50, $exchequerProfile['pred']);
+		$calcNorma = calcNorma($armorProfileGun['armomr_rank'], $armorProfileArmor['armomr_rank'], 100, $exchequerProfile['rebuke'], 50, $exchequerProfile['pred']);
 	?>
 
+	<?php if($exchequerProfile['tax'] == 0 && $exchequerProfile['weeklynorm'] == 0): ?>
 		<div id="user-warning">
+			<p id="user-warning-text">Необходимо сдать налог в количестве <b><?= $calcNalog ?></b> валюты и <b><?= $calcNorma ?></b> ноочастиц</p>
 		</div>
+	<?php elseif($exchequerProfile['tax'] == 0): ?>
+		<div id="user-warning">
+			<p id="user-warning-text">Необходимо сдать налог в количестве <b><?= $calcNalog ?></b> валюты</p>
+		</div>
+	<?php elseif($exchequerProfile['weeklynorm'] == 0): ?>
+		<div id="user-warning">
+			<p id="user-warning-text">Необходимо сдать налог в количестве <b><?= $calcNorma ?></b> ноочастиц</p>
+		</div>
+	<?php endif; ?>
 
 		<div id="user-info">
 			<label id="user-info-login"><?= $userProfile['login']?></label>
@@ -107,8 +125,8 @@
 				</div>
 				<div id="user-info-punishments-box">
 					<label id="user-info-punishments-label">Наказания</label>
-					<label id="user-info-punishments-warn">Варн | </label>
-					<label id="user-info-punishments-pred">Пред |</label>
+					<label id="user-info-punishments-warn">Варн | <?= $exchequerProfile['rebuke'] ?> из 3</label>
+					<label id="user-info-punishments-pred">Пред | <?= $exchequerProfile['pred'] ?> из 3</label>
 				</div>
 				<label id="user-info-border"></label>
 				<label id="user-info-exchequer-label">Общий взнос в казну </label>
@@ -116,10 +134,6 @@
 			</div>
 		</div>
 		<div id="user-armor-kv">
-		<?php 
-			$armorProfileGun = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1']));
-			$armorProfileArmor = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_1']));
-		?>
 			<label id="user-armor-kv-label">Армор для КВ</label>
 			<div id="equipment-gun-box">
 				<?php
@@ -164,13 +178,237 @@
 		</div>
 		<div id="user-armor">
 			<label id="user-armor-label">Снаряга</label>
+			<?php $armorProfileGun1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1'])); ?>
+
+			<div class="user-gun-box">
+				<?php
+					switch ($armorProfileGun1['armomr_rank']) {
+								case 3:
+									$armorProfileGun1Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileGun1Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileGun1Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileGun1Color ?>;" class="user-gun-name"><?= $armorProfileGun1['armor_name'] ?></span>
+				<img class="user-gun-img" src="<?= $armorProfileGun1['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileGun2 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_2'])); ?>
+			<?= $armorProfileGun2['armor_name'] ?>
+			<?= $armorProfileGun2['armomr_rank'] ?>
+			<?= $armorProfileGun2['armomr_img'] ?>
+
+			<div class="user-gun-box">
+				<?php
+					switch ($armorProfileGun2['armomr_rank']) {
+								case 3:
+									$armorProfileGun2Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileGun2Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileGun2Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileGun2['armomr_rank'] ?>;" class="user-gun-name"><?= $armorProfileGun2['armor_name'] ?></span>
+				<img class="user-gun-img" src="<?= $armorProfileGun2['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileGun3 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_3'])); ?>
+
+			<div class="user-gun-box">
+				<?php
+					switch ($armorProfileGun3['armomr_rank']) {
+								case 3:
+									$armorProfileGun3Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileGun3Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileGun3Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileGun3Color ?>;" class="user-gun-name"><?= $armorProfileGun3['armor_name'] ?></span>
+				<img class="user-gun-img" src="<?= $armorProfileGun3['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileGun4 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_4'])); ?>
+
+			<div class="user-gun-box">
+				<?php
+					switch ($armorProfileGun4['armomr_rank']) {
+								case 3:
+									$armorProfileGun4Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileGun4Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileGun4Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileGun4Color ?>;" class="user-gun-name"><?= $armorProfileGun4['armor_name'] ?></span>
+				<img class="user-gun-img" src="<?= $armorProfileGun4['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileGun5 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_5'])); ?>
+
+			<div class="user-gun-box">
+				<?php
+					switch ($armorProfileGun5['armomr_rank']) {
+								case 3:
+									$armorProfileGun5Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileGun5Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileGun5Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileGun5Color ?>;" class="user-gun-name"><?= $armorProfileGun5['armor_name'] ?></span>
+				<img class="user-gun-img" src="<?= $armorProfileGun5['armomr_img'] ?>">
+			</div>
+
+			<label id="user-armor-armor-label"> Броня </label>
+			<label id="user-second-gun-label"> Вторичка </label>
+
+			<?php $armorProfileArmor1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_1'])); ?>
+
+			<div class="user-armor-box">
+				<?php
+					switch ($armorProfileArmor1['armomr_rank']) {
+								case 3:
+									$armorProfileArmor1Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileArmor1Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileArmor1Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileArmor1Color ?>;" class="user-armor-name"><?= $armorProfileArmor1['armor_name'] ?></span>
+				<img class="user-armor-img" src="<?= $armorProfileArmor1['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileArmor2 = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_2'])); ?>
+
+			<div class="user-armor-box">
+				<?php
+					switch ($armorProfileArmor2['armomr_rank']) {
+								case 3:
+									$armorProfileArmor2Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileArmor2Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileArmor2Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileArmor2Color ?>;" class="user-armor-name"><?= $armorProfileArmor2['armor_name'] ?></span>
+				<img class="user-armor-img" src="<?= $armorProfileArmor2['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileArmor3 = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_3'])); ?>
+
+			<div class="user-armor-box">
+				<?php
+					switch ($armorProfileArmor3['armomr_rank']) {
+								case 3:
+									$armorProfileArmor3Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileArmor3Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileArmor3Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileArmor1Color ?>;" class="user-armor-name"><?= $armorProfileArmor3['armor_name'] ?></span>
+				<img class="user-armor-img" src="<?= $armorProfileArmor3['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileSecondGun1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1'])); ?>
+
+			<div class="user-second-gun-box">
+				<?php
+					switch ($armorProfileSecondGun1['armomr_rank']) {
+								case 3:
+									$armorProfileSecondGun1Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileSecondGun1Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileSecondGun1Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileSecondGun1Color ?>;" class="user-second-gun-name"><?= $armorProfileSecondGun1['armor_name'] ?></span>
+				<img class="user-second-gun-img" src="<?= $armorProfileSecondGun1['armomr_img'] ?>">
+			</div>
+
+			<?php $armorProfileSecondGun1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1'])); ?>
+
+			<div class="user-second-gun-box">
+				<?php
+					switch ($armorProfileSecondGun1['armomr_rank']) {
+								case 3:
+									$armorProfileSecondGun1Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileSecondGun1Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileSecondGun1Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileSecondGun1Color ?>;" class="user-second-gun-name"><?= $armorProfileSecondGun1['armor_name'] ?></span>
+				<img class="user-second-gun-img" src="<?= $armorProfileSecondGun1['armomr_img'] ?>">
+			</div>
+
+			<div class="user-second-gun-box">
+				<?php
+					switch ($armorProfileSecondGun1['armomr_rank']) {
+								case 3:
+									$armorProfileSecondGun1Color = '#8d8dff';
+									break;
+								case 4:
+									$armorProfileSecondGun1Color = '#d968c4';
+									break;
+								case 5:
+									$armorProfileSecondGun1Color = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $armorProfileSecondGun1Color ?>;" class="user-second-gun-name"><?= $armorProfileSecondGun1['armor_name'] ?></span>
+				<img class="user-second-gun-img" src="<?= $armorProfileSecondGun1['armomr_img'] ?>">
+			</div>
 			
 		</div>
 	<?php
 		echo "<pre>";
 		print_r($userProfile); 
 		print_r($armorlistProfile); 
-		print_r($squadProfile); 
+		print_r($squadProfile);
+		print_r($armorProfileGun1); 
 	?>
 
 

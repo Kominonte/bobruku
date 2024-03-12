@@ -77,6 +77,7 @@
 				<?php endif; ?>
 
 					<span class="exchequer-rebuke"><?= $userExchequerSod['rebuke'] ?>/3</span>
+					<span class="exchequer-rebuke"><?= $userExchequerSod['pred'] ?>/3</span>
 				</div>
 
 				<div class="exchequer-list-control">
@@ -108,7 +109,7 @@
 
 					<form class="exchequer-form" action="../vendor/core.php" method="POST">
 						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
-						<button class="exchequer-rebuke-passed" name="rebuke-passed">Пред</button>
+						<button class="exchequer-rebuke-passed" name="pred-passed">Пред</button>
 					</form>
 					
 				</div>
