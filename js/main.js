@@ -98,3 +98,25 @@ function closeAddSquad(){
 	document.getElementById("squad-add").style.display = "none";
 	document.getElementById("background-dark").style.display = "none";
 }
+
+function viewGun(){
+	let changeGun = arguments[0];
+ 	document.getElementById("background-dark").style.display = "block";
+	document.getElementById("change-user-gun-box-number-"+changeGun).style.display = "block";
+	document.getElementById("body").style.overflow = "hidden";
+};
+
+function viewArmor(){
+	let changeArmor = arguments[0];
+ 	document.getElementById("background-dark").style.display = "block";
+	document.getElementById("change-user-armor-box-number-"+changeArmor).style.display = "block";
+	document.getElementById("body").style.overflow = "hidden";
+};
+
+
+
+function closeHooky(){
+ 	document.getElementById("background-dark").style.display = "none";
+	document.getElementById("hooky-add-box").style.display = "none";
+	document.getElementById("body").style.overflow = "visible";
+};

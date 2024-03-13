@@ -615,5 +615,52 @@ if(isset($postData['squad-setting-del'])){
 		$summNallog = $nalog * (1 + ((($varnPrc * $varnKol) + ($PredPrc * $PredKol)) / 100));
 		return $summNallog;
 	}
+
+/*=================================================Смена снаряги в профиле================================================*/
+
+if(isset($postData['change-gun'])){
+	switch($postData['change-gun-pos']){
+		case 1:
+			$recordСhangeGun = "main_gun_1";
+			break;
+		case 2:
+			$recordСhangeGun = "main_gun_2";
+			break;
+		case 3:
+			$recordСhangeGun = "main_gun_3";
+			break;
+		case 4:
+			$recordСhangeGun = "main_gun_4";
+			break;
+		case 5:
+			$recordСhangeGun = "main_gun_5";
+			break;
+	}
+	$changeGun = R::findOne('armorlist', 'user_id = ?', array($postData['change-user-id']));
+	$changeGun->$recordСhangeGun = $postData['change-gun'];
+	R::store($changeGun);
+
+	header("Location: /pages/user.php?id=".$postData['change-user-id']);
+}
+
+if(isset($postData['change-armor'])){
+	switch($postData['change-armor-pos']){
+		case 1:
+			$recordСhangeGun = "armor_1";
+			break;
+		case 2:
+			$recordСhangeGun = "armor_2";
+			break;
+		case 3:
+			$recordСhangeGun = "armor_3";
+			break;
+	}
+	$changeGun = R::findOne('armorlist', 'user_id = ?', array($postData['change-user-id']));
+	$changeGun->$recordСhangeGun = $postData['change-armor'];
+	R::store($changeGun);
+
+	header("Location: /pages/user.php?id=".$postData['change-user-id']);
+}
 	
 ?>
+

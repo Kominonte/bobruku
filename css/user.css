@@ -5,6 +5,7 @@
 	--background-light: #292929;
 	--background-verylight: #363636;
 	--background-element: #39424f;
+	--background-element-hover: #485363;
 	--background-element-second: #384362;
 	--background-wrapper: #313843;
 	--background-wrapper-second: #0F1628;
@@ -385,6 +386,7 @@ body {
 	border-radius: 10px;
 	background-color: var(--background-fon);
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .user-gun-img {
@@ -402,6 +404,36 @@ body {
 	z-index: 100;
 	background-color: rgba(20, 20, 20, 0.6);
 	text-align: center;
+}
+
+.change-user-gun-box {
+	display: none;
+	position: fixed;
+	z-index: 200;
+	top: 150px;
+	left: 50%;
+	margin: 0px 0px 0px -250px;
+	padding: 10px;
+	width: 500px;
+	height: 700px;
+	border-radius: 20px;
+	background-color: var(--background-wrapper);
+}
+
+.change-user-gun-button {
+	width: 100%;
+	margin: 0px 0px 10px 0px;
+	padding: 20px 0px;
+	border: none;
+	border-radius: 10px;
+	background-color: var(--background-element);
+	cursor: pointer;
+	font-size: 20px;
+	transition: 0.2s;
+}
+
+.change-user-gun-button:hover {
+	background-color: var(--background-element-hover);
 }
 
 .user-armor-box {

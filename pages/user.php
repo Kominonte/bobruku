@@ -2,7 +2,6 @@
 	require_once("../vendor/connect.php");
 	require_once("../vendor/core.php");
 
-
 	$userProfile = R::findOne('user', 'id = ?', array($_GET['id']));
 	$armorlistProfile = R::findOne('armorlist', 'user_id = ?', array($_GET['id']));
 	$exchequerProfile = R::findOne('exchequerlist', 'user_id = ?', array($_GET['id']));
@@ -10,7 +9,9 @@
 	$userExchequer = R::findOne('exchequerlist', 'user_id = ?', array($_GET['id']));
 	$armorProfileGun = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1']));
 	$armorProfileArmor = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_1']));
-
+	$armorProfileSecond = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_2']));
+	$listEquipment = R::findAll('equipment','armor_type = ?',  array(1));
+	$listEquipmentArmor = R::findAll('equipment','armor_type = ?',  array(2));
 ?>
 
 <!DOCTYPE html>
@@ -157,6 +158,24 @@
 				<?php
 					switch ($armorProfileArmor['armomr_rank']) {
 								case 3:
+									$userSecondGunRankColor = '#8d8dff';
+									break;
+								case 4:
+									$userSecondGunRankColor = '#d968c4';
+									break;
+								case 5:
+									$userSecondGunRankColor = '#ff5767';
+									break;	
+							}
+				?>
+				<span style="color:<?= $userSecondGunRankColor ?>;" id="equipment-gun-name"><?= $armorProfileArmor['armor_name'] ?></span>
+				<img id="equipment-armor-img" src="<?= $armorProfileArmor['armomr_img']?>">
+			</div>
+
+			<div id="equipment-second-gun-box">
+				<?php
+					switch ($armorProfileSecond['armomr_rank']) {
+								case 3:
 									$userArmorRankColor = '#8d8dff';
 									break;
 								case 4:
@@ -167,20 +186,16 @@
 									break;	
 							}
 				?>
-				<span style="color:<?= $userArmorRankColor ?>;" id="equipment-gun-name"><?= $armorProfileArmor['armor_name'] ?></span>
-				<img id="equipment-armor-img" src="<?= $armorProfileArmor['armomr_img']?>">
-			</div>
-
-			<div id="equipment-second-gun-box">
-				<span style="color:<?= $userArmorRankColor ?>;" id="equipment-gun-name"><?= $armorProfileGun['armor_name'] ?></span>
-				<img id="equipment-second-gun-img" src="<?= $armorProfileGun['armomr_img']?>">
+				<span style="color:<?= $userArmorRankColor ?>;" id="equipment-gun-name"><?= $armorProfileSecond['armor_name'] ?></span>
+				<img id="equipment-second-gun-img" src="<?= $armorProfileSecond['armomr_img']?>">
 			</div>
 		</div>
+
 		<div id="user-armor">
 			<label id="user-armor-label">Снаряга</label>
 			<?php $armorProfileGun1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1'])); ?>
 
-			<div class="user-gun-box">
+			<div class="user-gun-box" id="gun-box-number-1" onclick="viewGun(1)">
 				<?php
 					switch ($armorProfileGun1['armomr_rank']) {
 								case 3:
@@ -198,12 +213,38 @@
 				<img class="user-gun-img" src="<?= $armorProfileGun1['armomr_img'] ?>">
 			</div>
 
-			<?php $armorProfileGun2 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_2'])); ?>
-			<?= $armorProfileGun2['armor_name'] ?>
-			<?= $armorProfileGun2['armomr_rank'] ?>
-			<?= $armorProfileGun2['armomr_img'] ?>
+			<div class="change-user-gun-box" id="change-user-gun-box-number-1">
+			<?php
+				foreach ($listEquipment as $listEquipmentRow) {
 
-			<div class="user-gun-box">
+				switch ($listEquipmentRow['armomr_rank']) {
+						case 3:
+							$listEquipmentRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-gun-pos" value="1">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentRowColor ?>;" name="change-gun" 
+			     value="<?= $listEquipmentRow['id'] ?>">   
+			     	<?= $listEquipmentRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>
+				
+			</div>
+
+			<?php $armorProfileGun2 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_2'])); ?>
+
+			<div class="user-gun-box" id="gun-box-number-2" onclick="viewGun(2)">
 				<?php
 					switch ($armorProfileGun2['armomr_rank']) {
 								case 3:
@@ -217,13 +258,41 @@
 									break;	
 							}
 				?>
-				<span style="color:<?= $armorProfileGun2['armomr_rank'] ?>;" class="user-gun-name"><?= $armorProfileGun2['armor_name'] ?></span>
+				<span style="color:<?= $armorProfileGun2Color ?>;" class="user-gun-name"><?= $armorProfileGun2['armor_name'] ?></span>
 				<img class="user-gun-img" src="<?= $armorProfileGun2['armomr_img'] ?>">
+			</div>
+
+			<div class="change-user-gun-box" id="change-user-gun-box-number-2">
+			<?php
+				foreach ($listEquipment as $listEquipmentRow) {
+
+				switch ($listEquipmentRow['armomr_rank']) {
+						case 3:
+							$listEquipmentRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-gun-pos" value="2">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentRowColor ?>;" name="change-gun" 
+			     value="<?= $listEquipmentRow['id'] ?>">   
+			     	<?= $listEquipmentRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>				
 			</div>
 
 			<?php $armorProfileGun3 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_3'])); ?>
 
-			<div class="user-gun-box">
+			<div class="user-gun-box" id="gun-box-number-3" onclick="viewGun(3)">
 				<?php
 					switch ($armorProfileGun3['armomr_rank']) {
 								case 3:
@@ -241,9 +310,37 @@
 				<img class="user-gun-img" src="<?= $armorProfileGun3['armomr_img'] ?>">
 			</div>
 
+			<div class="change-user-gun-box" id="change-user-gun-box-number-3">
+			<?php
+				foreach ($listEquipment as $listEquipmentRow) {
+
+				switch ($listEquipmentRow['armomr_rank']) {
+						case 3:
+							$listEquipmentRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-gun-pos" value="3">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentRowColor ?>;" name="change-gun" 
+			     value="<?= $listEquipmentRow['id'] ?>">   
+			     	<?= $listEquipmentRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>				
+			</div>
+
 			<?php $armorProfileGun4 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_4'])); ?>
 
-			<div class="user-gun-box">
+			<div class="user-gun-box" id="gun-box-number-4" onclick="viewGun(4)">
 				<?php
 					switch ($armorProfileGun4['armomr_rank']) {
 								case 3:
@@ -261,9 +358,37 @@
 				<img class="user-gun-img" src="<?= $armorProfileGun4['armomr_img'] ?>">
 			</div>
 
+			<div class="change-user-gun-box" id="change-user-gun-box-number-4">
+			<?php
+				foreach ($listEquipment as $listEquipmentRow) {
+
+				switch ($listEquipmentRow['armomr_rank']) {
+						case 3:
+							$listEquipmentRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-gun-pos" value="4">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentRowColor ?>;" name="change-gun" 
+			     value="<?= $listEquipmentRow['id'] ?>">   
+			     	<?= $listEquipmentRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>				
+			</div>
+
 			<?php $armorProfileGun5 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_5'])); ?>
 
-			<div class="user-gun-box">
+			<div class="user-gun-box" id="gun-box-number-5" onclick="viewGun(5)">
 				<?php
 					switch ($armorProfileGun5['armomr_rank']) {
 								case 3:
@@ -281,12 +406,40 @@
 				<img class="user-gun-img" src="<?= $armorProfileGun5['armomr_img'] ?>">
 			</div>
 
+			<div class="change-user-gun-box" id="change-user-gun-box-number-5">
+			<?php
+				foreach ($listEquipment as $listEquipmentRow) {
+
+				switch ($listEquipmentRow['armomr_rank']) {
+						case 3:
+							$listEquipmentRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-gun-pos" value="5">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentRowColor ?>;" name="change-gun" 
+			     value="<?= $listEquipmentRow['id'] ?>">   
+			     	<?= $listEquipmentRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>				
+			</div>
+
 			<label id="user-armor-armor-label"> Броня </label>
 			<label id="user-second-gun-label"> Вторичка </label>
 
 			<?php $armorProfileArmor1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_1'])); ?>
 
-			<div class="user-armor-box">
+			<div class="user-armor-box" onclick="viewArmor(1)">
 				<?php
 					switch ($armorProfileArmor1['armomr_rank']) {
 								case 3:
@@ -304,9 +457,37 @@
 				<img class="user-armor-img" src="<?= $armorProfileArmor1['armomr_img'] ?>">
 			</div>
 
+			<div class="change-user-gun-box" id="change-user-armor-box-number-1">
+			<?php
+				foreach ($listEquipmentArmor as $listEquipmentArmorRow) {
+
+				switch ($listEquipmentArmorRow['armomr_rank']) {
+						case 3:
+							$listEquipmentArmorRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentArmorRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentArmorRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-armor-pos" value="1">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentArmorRowColor ?>;" name="change-armor" 
+			     value="<?= $listEquipmentArmorRow['id'] ?>">   
+			     	<?= $listEquipmentArmorRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>				
+			</div>
+
 			<?php $armorProfileArmor2 = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_2'])); ?>
 
-			<div class="user-armor-box">
+			<div class="user-armor-box" onclick="viewArmor(2)">
 				<?php
 					switch ($armorProfileArmor2['armomr_rank']) {
 								case 3:
@@ -324,9 +505,37 @@
 				<img class="user-armor-img" src="<?= $armorProfileArmor2['armomr_img'] ?>">
 			</div>
 
+			<div class="change-user-gun-box" id="change-user-armor-box-number-2">
+			<?php
+				foreach ($listEquipmentArmor as $listEquipmentArmorRow) {
+
+				switch ($listEquipmentArmorRow['armomr_rank']) {
+						case 3:
+							$listEquipmentArmorRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentArmorRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentArmorRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-armor-pos" value="2">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentArmorRowColor ?>;" name="change-armor" 
+			     value="<?= $listEquipmentArmorRow['id'] ?>">   
+			     	<?= $listEquipmentArmorRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>				
+			</div>
+
 			<?php $armorProfileArmor3 = R::findOne('equipment', 'id = ?', array($armorlistProfile['armor_3'])); ?>
 
-			<div class="user-armor-box">
+			<div class="user-armor-box" onclick="viewArmor(3)">
 				<?php
 					switch ($armorProfileArmor3['armomr_rank']) {
 								case 3:
@@ -342,6 +551,34 @@
 				?>
 				<span style="color:<?= $armorProfileArmor1Color ?>;" class="user-armor-name"><?= $armorProfileArmor3['armor_name'] ?></span>
 				<img class="user-armor-img" src="<?= $armorProfileArmor3['armomr_img'] ?>">
+			</div>
+
+			<div class="change-user-gun-box" id="change-user-armor-box-number-3">
+			<?php
+				foreach ($listEquipmentArmor as $listEquipmentArmorRow) {
+
+				switch ($listEquipmentArmorRow['armomr_rank']) {
+						case 3:
+							$listEquipmentArmorRowColor = '#8d8dff';
+							break;
+						case 4:
+							$listEquipmentArmorRowColor = '#d968c4';
+							break;
+						case 5:
+							$listEquipmentArmorRowColor = '#ff5767';
+							break;	
+					}	
+		    ?>
+		    <form action="/vendor/core.php" method="POST">
+		    	<input type="hidden" name="change-user-id" value="<?= $_GET['id'] ?>">
+		    	<input type="hidden" name="change-armor-pos" value="3">
+			    <button type="submit" class="change-user-gun-button" 
+			     style="color:<?= $listEquipmentArmorRowColor ?>;" name="change-armor" 
+			     value="<?= $listEquipmentArmorRow['id'] ?>">   
+			     	<?= $listEquipmentArmorRow['armor_name']?>	
+			    </button>
+			</form>
+			<?php } ?>				
 			</div>
 
 			<?php $armorProfileSecondGun1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1'])); ?>
