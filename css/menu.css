@@ -1,16 +1,34 @@
+:root {
+
+/*Цвет фона*/
+	--background-dark: #1c1c1c;
+	--background-light: #292929;
+	--background-verylight: #363636;
+	--background-element: #39424f;
+	--background-element-hover: #485363;
+	--background-element-second: #384362;
+	--background-wrapper: #313843;
+	--background-wrapper-second: #0F1628;
+	--background-fon: #292f39;
+	--background-warning: #cf231d;
+
+	--shadow-element: #1e1e1e;
+	--shadow-warning: #ed1d15;
+
+/*Цвет текста*/
+  --color-white: #ffffff;
+  --color-light: #bdbdbd;
+  --color-dark: #1c1c1c;
+  --color-warning: #f2aeae;
+
+/*Выделение*/
+  --highlighting: #323232;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
-}
-
-#fon {
-	position: fixed;
-	top: -20px;
-	left: -20px;
-	width: 103%;
-	filter: invert(80%);
-	z-index: -1;
 }
 
 #background-dark {
@@ -44,7 +62,7 @@ body {
 	width: 800px;
 	height: 170px;
 	margin: 0px 0px 0px -400px;
-	background: #1c1c1c;
+	background-color: var(--background-wrapper);
 	border-radius: 20px;
 }
 
@@ -86,7 +104,7 @@ body {
 	right: 0;	
 	width: 100%;
 	height: 70px;
-	background-color: #1c1c1c;
+	background-color: var(--background-wrapper);
 	z-index: 10;
 }
 
@@ -95,7 +113,7 @@ body {
 	margin: 13px 10px;
 	padding: 10px;
 	border-radius: 10px;
-	color: #ffffff;
+	color: var(--color-light);
 	font-size: 18px;
 	font-weight: 600;
 	text-align: center;
@@ -105,8 +123,8 @@ body {
 }
 
 .menu-element:hover {
-	background-color: #ffffff;
-	color: #1c1c1c;
+	background-color: var(--background-element-hover);
+	color: #ffffff;
 }
 
 #account {

@@ -193,6 +193,7 @@
 
 		<div id="user-armor">
 			<label id="user-armor-label">Снаряга</label>
+
 			<?php $armorProfileGun1 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_1'])); ?>
 
 			<div class="user-gun-box" id="gun-box-number-1" onclick="viewGun(1)">
@@ -238,11 +239,10 @@
 			     	<?= $listEquipmentRow['armor_name']?>	
 			    </button>
 			</form>
-			<?php } ?>
-				
+			<?php } ?>				
 			</div>
 
-			<?php $armorProfileGun2 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_2'])); ?>
+		<?php $armorProfileGun2 = R::findOne('equipment', 'id = ?', array($armorlistProfile['main_gun_2'])); ?>
 
 			<div class="user-gun-box" id="gun-box-number-2" onclick="viewGun(2)">
 				<?php

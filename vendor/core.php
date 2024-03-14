@@ -273,6 +273,14 @@ if(isset($postData['attendance-reserve-btn'])){
 	$user->date_reserve = date("Y-m-d H:i:s");
 	R::store($user);
 
+	$tax = R::findOne('exchequerlist', 'user_id = ?', array($postData['attendance-userid']));
+	$tax->tax = 2;
+	R::store($tax);
+
+	$weeklynorm = R::findOne('exchequerlist', 'user_id = ?', array($postData['attendance-userid']));
+	$weeklynorm->weeklynorm = 2; 
+	R::store($weeklynorm);
+
 	header("Location: /pages/compound.php");
 }
 
@@ -283,6 +291,14 @@ if(isset($postData['reserve-return-btn'])){
 	$user->status = 1;
 	$user->date_reserve = date("Y-m-d H:i:s");
 	R::store($user);
+
+	$tax = R::findOne('exchequerlist', 'user_id = ?', array($postData['attendance-userid']));
+	$tax->tax = 0;
+	R::store($tax);
+
+	$weeklynorm = R::findOne('exchequerlist', 'user_id = ?', array($postData['attendance-userid']));
+	$weeklynorm->weeklynorm = 0; 
+	R::store($weeklynorm);
 
 	header("Location: /pages/compound.php");
 }
@@ -396,7 +412,27 @@ if(isset($postData['rebuke-passed'])){
 	header("Location: /pages/exchequer.php");
 }
 
+if(isset($postData['rebuke-remove-passed'])){
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->rebuke -= 1; 
+		R::store($exchequer);
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->rebuke -= 1; 
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
+
 /*------------------------------------------Перд---------------------------------------------------*/
+
 if(isset($postData['pred-passed'])){
 
 	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
@@ -411,6 +447,26 @@ if(isset($postData['pred-passed'])){
 
 		$exchequer->user_id = $postData['exchequer-id'];
 		$exchequer->pred += 1; 
+		R::store($exchequer);
+	}
+
+	header("Location: /pages/exchequer.php");
+}
+
+if(isset($postData['pred-remove-passed'])){
+
+	$exchequer = R::findOne('exchequerlist', 'user_id = ?', array($postData['exchequer-id']));
+
+	if($exchequer){
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->pred -= 1; 
+		R::store($exchequer);
+	}else{
+
+		$exchequer = R::dispense('exchequerlist');
+
+		$exchequer->user_id = $postData['exchequer-id'];
+		$exchequer->pred -= 1; 
 		R::store($exchequer);
 	}
 

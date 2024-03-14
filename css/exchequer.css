@@ -1,16 +1,35 @@
+:root {
+
+/*Цвет фона*/
+	--background-dark: #1c1c1c;
+	--background-light: #292929;
+	--background-verylight: #363636;
+	--background-element: #39424f;
+	--background-element-hover: #485363;
+	--background-element-second: #384362;
+	--background-wrapper: #313843;
+	--background-wrapper-second: #0F1628;
+	--background-fon: #292f39;
+	--background-warning: #cf231d;
+
+	--shadow-element: #1e1e1e;
+	--shadow-warning: #ed1d15;
+
+/*Цвет текста*/
+  --color-white: #ffffff;
+  --color-light: #bdbdbd;
+  --color-dark: #1c1c1c;
+  --color-warning: #f2aeae;
+
+/*Выделение*/
+  --highlighting: #323232;
+}
+
 body {
 	margin: 0;
 	padding: 0;
+	background-color: var(--background-fon);
 	font-family: 'Montserrat', sans-serif;
-}
-
-#fon {
-	position: fixed;
-	top: -20px;
-	left: -20px;
-	width: 103%;
-	filter: invert(80%);
-	z-index: -1;
 }
 
 #auth {
@@ -55,72 +74,22 @@ body {
 	padding: 6px 10px 10px 10px;
 }
 
-#menu {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;	
-	width: 100%;
-	height: 70px;
-	background-color: #1c1c1c;
-	z-index: 2;
-}
-
 #main {
 	position: relative;
 	width: 1240px;
 	margin: 100px auto;
 	padding: 10px 10px 2px 10px;
 	border-radius: 20px;
-	background-color: #1c1c1c;
 }
-
-.menu-element {
-	display: inline-block;
-	margin: 13px 10px;
-	padding: 10px;
-	border-radius: 10px;
-	color: #ffffff;
-	font-size: 18px;
-	font-weight: 600;
-	text-align: center;
-	cursor: pointer;
-	text-decoration: none;
-	transition: 0.3s;
-}
-
-.menu-element:hover {
-	background-color: #ffffff;
-	color: #1c1c1c;
-}
-
-#account {
-	padding: 20px 10px;
-	border-left: 2px solid #ffffff;
-}
-
-#name {
-	margin: 5px;
-	padding: 5px 10px;
-	float: right;
-	color: #ffffff;
-	font-size: 40px;
-	cursor: pointer;
-	transition: 0.3s;
-}
-
-#name:hover {
-	transform: scale(1.1);
-}
-
 
 #exchequer-label {
 	width: calc(100% - 20px);
 	border-radius: 10px;
 	margin: 0px 0px 20px 0px;
 	padding: 10px 10px 15px 10px;
-	background-color: #292929;
-	color: #919191;
+	box-shadow: 0px 0px 10px 0px var(--shadow-element);
+	background-color: var(--background-wrapper);
+	color: var(--color-light);
 	font-size: 20px;
 }
 
@@ -129,8 +98,9 @@ body {
 	border-radius: 10px;
 	margin: 0px 0px 10px 0px;
 	padding: 10px 10px 15px 10px;
-	background-color: #292929;
-	color: #919191;
+	box-shadow: 0px 0px 10px 0px var(--shadow-element);
+	background-color: var(--background-wrapper);
+	color: var(--color-light);
 	font-size: 20px;
 }
 
@@ -186,95 +156,129 @@ body {
 	padding: 10px 5px;
 	border: none;
 	border-radius: 5px;
-	background-color: #1c1c1c;
-	color: white;
+	background-color: var(--background-fon);
+	color: var(--color-light);
 	font-size: 18px;
 	outline: none;
 }
 
 .exchequer-tax-passed {
 	margin: 0px 0px 0px 10px;
-	padding: 5px 20px;
-	border: 2px solid #919191;
+	padding: 5px 22px;
 	border-radius: 5px;
-	background-color: #919191;
-	color: #292929;
+	border: none;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 18px;
 	cursor: pointer;
 	transition: 0.3s;
 }
 
 .exchequer-tax-passed:hover {
-	background-color: #292929;
-	color: #919191;
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
 }
 
 .exchequer-tax-failed {
 	margin: 0px 8px;
 	padding: 5px 20px;
-	border: 2px solid #919191;
 	border-radius: 5px;
-	background-color: #919191;
-	color: #292929;
+	border: none;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 18px;
 	cursor: pointer;
 	transition: 0.3s;
 }
 
 .exchequer-tax-failed:hover {
-	background-color: #292929;
-	color: #919191;
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
 }
 
 .exchequer-weeklynorm-passed {
-	margin: 0px 0px 0px 8px;
-	padding: 5px 20px;
-	border: 2px solid #919191;
+	margin: 0px 0px 0px 12px;
+	padding: 5px 22px;
 	border-radius: 5px;
-	background-color: #919191;
-	color: #292929;
+	border: none;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 18px;
 	cursor: pointer;
 	transition: 0.3s;
 }
 
 .exchequer-weeklynorm-passed:hover {
-	background-color: #292929;
-	color: #919191;
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
 }
 
 .exchequer-weeklynorm-failed {
 	margin: 0px 0px 0px 8px;
 	padding: 5px 20px;
-	border: 2px solid #919191;
 	border-radius: 5px;
-	background-color: #919191;
-	color: #292929;
+	border: none;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 18px;
 	cursor: pointer;
 	transition: 0.3s;
 }
 
 .exchequer-weeklynorm-failed:hover {
-	background-color: #292929;
-	color: #919191;
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
 }
 
 .exchequer-rebuke-passed {
 	margin: 0px 0px 0px 50px;
 	padding: 5px 20px;
-	border: 2px solid #919191;
 	border-radius: 5px;
-	background-color: #919191;
-	color: #292929;
+	border: none;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 18px;
 	cursor: pointer;
 	transition: 0.3s;
 }
 
 .exchequer-rebuke-passed:hover {
-	background-color: #292929;
-	color: #919191;
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
+}
+
+.exchequer-rebuke-passed-button {
+	margin: 0px 0px 0px 15px;
+	padding: 5px 5px;
+	border-radius: 5px;
+	border: none;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 18px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.exchequer-rebuke-passed-button:hover {
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
+}
+
+.exchequer-rebuke-passed-remove-button {
+	margin: 0px 0px 0px 5px;
+	padding: 5px 5px;
+	border-radius: 5px;
+	border: none;
+	background-color: var(--background-element);
+	color: var(--color-light);
+	font-size: 18px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.exchequer-rebuke-passed-remove-button:hover {
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
 }
 
 .exchequer-form {

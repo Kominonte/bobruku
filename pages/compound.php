@@ -17,7 +17,6 @@
 	<title>Состав</title>
 </head>
 <body id="body">
-	<img id="fon" src="../assets/background/fon1.jpeg">
 
 	<div id="background-dark"></div>
 
@@ -196,6 +195,8 @@
 						<div class="compound-second-box"></div>
 					</div>
 
+				<?php if($user['role'] == 2){?>
+
 					<div id="attendance-control-box">
 						<form action="../vendor/core.php" method="POST">
 							<input type="hidden" name="attendance-userid" value="<?= $compoundRow['id'] ?>">
@@ -211,6 +212,7 @@
 						
 					</div>
 
+			<?php } ?>		
 				</div>
 				</a>
 				<?php } ?>
@@ -265,10 +267,12 @@
 					<span class="reserve-was">Был | <?= $reserveRow['was'] ?></span>
 					<span class="reserve-wasnot">Не был | <?= $reserveRow['wasnot'] ?></span>
 					<span class="reserve-date"> c <?=  mb_strimwidth($reserveRow['date_reserve'], 0, 10) ?> </span>
+				<?php if($user['role'] == 2){?>
 					<form  action="../vendor/core.php" method="POST">
 						<input type="hidden" name="attendance-userid" value="<?= $reserveRow['id'] ?>">
 						<button class="reserve-return-btn" type="submit" name="reserve-return-btn">вернуть в состав</button>
 					</form>
+				<?php } ?>
 				</div>
 				<?php } ?>
 			</div>

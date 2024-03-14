@@ -8,7 +8,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/png" sizes="128x128" href="assets/logo/logo.jpeg">	
+	<link rel="icon" type="image/png" sizes="128x128" href="assets/logo/logo.jpeg">
+	<link rel='stylesheet' type='text/css' href='../css/menu.css'>
 	<link rel='stylesheet' type='text/css' href='../css/exchequer.css'>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +17,6 @@
 	<title>Сборы</title>
 </head>
 <body>
-	<img id="fon" src="../assets/background/fon1.jpeg">
 
 	<?php if($user): require_once("../includs/menu.php");?>
 
@@ -43,7 +43,7 @@
 		 ?>
 	
 			<div class="exchequer-list" style="background-color: <?php if($userExchequerRow['id'] == $user->id){
-		 		echo "#323232";
+		 		echo "#373e4a";
 		 	} ?>;">
 				<div>
 					<span class="exchequer-login"><?= $userExchequerRow['login'] ?></span>
@@ -80,6 +80,7 @@
 					<span class="exchequer-rebuke"><?= $userExchequerSod['pred'] ?>/3</span>
 				</div>
 
+			<?php if($user['role'] == 2){?>
 				<div class="exchequer-list-control">
 					<form class="exchequer-form" action="../vendor/core.php" method="POST">
 						<input class="contribution-value" list="contribution-value" name="contribution-value">
@@ -96,6 +97,7 @@
 						<button class="exchequer-tax-failed" name="tax-failed">Не сдал</button>
 					</form>
 
+
 					<form class="exchequer-form" action="../vendor/core.php" method="POST">
 						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
 						<button class="exchequer-weeklynorm-passed" name="weeklynorm-passed">Сдал</button>
@@ -104,15 +106,18 @@
 
 					<form class="exchequer-form" action="../vendor/core.php" method="POST">
 						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
-						<button class="exchequer-rebuke-passed" name="rebuke-passed">Варн</button>
+						<button class="exchequer-rebuke-passed-button" name="rebuke-passed">Варн</button>
+						<button class="exchequer-rebuke-passed-remove-button" name="rebuke-remove-passed">Снять</button>
 					</form>
 
 					<form class="exchequer-form" action="../vendor/core.php" method="POST">
 						<input type="hidden" name="exchequer-id" value="<?= $userExchequerRow['id']?>">
-						<button class="exchequer-rebuke-passed" name="pred-passed">Пред</button>
+						<button class="exchequer-rebuke-passed-button" name="pred-passed">Пред</button>
+						<button class="exchequer-rebuke-passed-remove-button" name="pred-remove-passed">Снять</button>
 					</form>
 					
 				</div>
+			<?php } ?>
 			</div>
 
 		<?php } ?>
