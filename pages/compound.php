@@ -276,18 +276,9 @@
 				</div>
 				<?php } ?>
 			</div>
-
-			<div id="blacklist-box">
-				<span id="blacklist-label">Черный список</span>
-			</div>
 			
 		</div>
-
-
-		<form action="../vendor/core.php" method="POST">
-			<button id="auth-btn" type="submit" name="logout-btn"> Выйти </button><br>
-		</form>
-
+		
 		<form id="hooky-add-box" action="../vendor/core.php" method="POST">
 				<label id="hooky-сause-label">Причина</label>
 				<label id="hooky-сause-close" onclick="closeHooky()">x</label>

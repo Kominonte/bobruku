@@ -1,16 +1,35 @@
+:root {
+
+/*Цвет фона*/
+	--background-dark: #1c1c1c;
+	--background-light: #292929;
+	--background-verylight: #363636;
+	--background-element: #39424f;
+	--background-element-hover: #485363;
+	--background-element-second: #384362;
+	--background-wrapper: #313843;
+	--background-wrapper-second: #0F1628;
+	--background-fon: #292f39;
+	--background-warning: #cf231d;
+
+	--shadow-element: #1e1e1e;
+	--shadow-warning: #ed1d15;
+
+/*Цвет текста*/
+  --color-white: #ffffff;
+  --color-light: #bdbdbd;
+  --color-dark: #1c1c1c;
+  --color-warning: #f2aeae;
+
+/*Выделение*/
+  --highlighting: #323232;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
-}
-
-#fon {
-	position: fixed;
-	top: -20px;
-	left: -20px;
-	width: 103%;
-	filter: invert(80%);
-	z-index: -1;
+	background-color: var(--background-fon);
 }
 
 #auth {
@@ -64,15 +83,26 @@ body {
 	height: 70px;
 	background-color: #1c1c1c;
 	z-index: 2;
+
+}
+
+#wrapper {
+	position: relative;
+	width: 1240px;
+	margin: 0px auto;
+}
+
+#clan-img {
+	width: 1240px;
+	margin: 100px auto 10px auto;
+	border-radius: 20px;
 }
 
 #main {
-	position: relative;
-	width: 1240px;
 	height: 1000px;
-	margin: 100px auto;
+	margin: 10px auto;
 	border-radius: 20px;
-	background-color: #1c1c1c;
+	background-color: var(--background-wrapper);
 }
 
 .menu-element {

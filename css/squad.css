@@ -1,7 +1,35 @@
+:root {
+
+/*Цвет фона*/
+	--background-dark: #1c1c1c;
+	--background-light: #292929;
+	--background-verylight: #363636;
+	--background-element: #39424f;
+	--background-element-hover: #485363;
+	--background-element-second: #384362;
+	--background-wrapper: #313843;
+	--background-wrapper-second: #0F1628;
+	--background-fon: #292f39;
+	--background-warning: #cf231d;
+
+	--shadow-element: #1e1e1e;
+	--shadow-warning: #ed1d15;
+
+/*Цвет текста*/
+  --color-white: #ffffff;
+  --color-light: #bdbdbd;
+  --color-dark: #1c1c1c;
+  --color-warning: #f2aeae;
+
+/*Выделение*/
+  --highlighting: #323232;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
+	background-color: var(--background-fon);
 }
 
 body ::-webkit-scrollbar {
@@ -16,14 +44,6 @@ body ::-webkit-scrollbar-track {
 body ::-webkit-scrollbar-thumb {
   background-color: #515151;    /* цвет бегунка */
   border-radius: 5px;       /* округлось бегунка */
-}
-#fon {
-	position: fixed;
-	top: -20px;
-	left: -20px;
-	width: 103%;
-	filter: invert(80%);
-	z-index: -1;
 }
 
 #background-dark {
@@ -92,17 +112,6 @@ body ::-webkit-scrollbar-thumb {
 	padding: 6px 10px 10px 10px;
 }
 
-#menu {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;	
-	width: 100%;
-	height: 70px;
-	background-color: #1c1c1c;
-	z-index: 2;
-}
-
 #main {
 	position: relative;
 	width: 1240px;
@@ -110,47 +119,7 @@ body ::-webkit-scrollbar-thumb {
 	padding: 10px;
 	margin: 100px auto;
 	border-radius: 20px;
-	background-color: #1c1c1c;
 }
-
-.menu-element {
-	display: inline-block;
-	margin: 13px 10px;
-	padding: 10px;
-	border-radius: 10px;
-	color: #ffffff;
-	font-size: 18px;
-	font-weight: 600;
-	text-align: center;
-	cursor: pointer;
-	text-decoration: none;
-	transition: 0.3s;
-}
-
-.menu-element:hover {
-	background-color: #ffffff;
-	color: #1c1c1c;
-}
-
-#account {
-	padding: 20px 10px;
-	border-left: 2px solid #ffffff;
-}
-
-#name {
-	margin: 5px;
-	padding: 5px 10px;
-	float: right;
-	color: #ffffff;
-	font-size: 40px;
-	cursor: pointer;
-	transition: 0.3s;
-}
-
-#name:hover {
-	transform: scale(1.1);
-}
-
 
 .squad-list {
 	position: relative;
@@ -159,7 +128,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 0px 10px 10px 0px;
 	padding: 0px 0px 10px 0px;
 	border-radius: 10px;
-	background-color: #292929;
+	box-shadow: 0px 0px 10px 1px var(--shadow-element);
+	background-color: var(--background-wrapper);
 }
 
 .squad-label {
@@ -167,8 +137,9 @@ body ::-webkit-scrollbar-thumb {
 	margin: 0px 0px 10px 0px;
 	padding: 7px 0px 10px 0px;
 	border-radius: 10px;
-	background-color: #262626;
-	color: #919191;
+	box-shadow: 0px 0px 10px 0px var(--shadow-element);
+	background-color: var(--background-wrapper);
+	color: var(--color-light);
 	font-size: 25px;
 	font-weight: 500;
 	text-align: center;
@@ -180,10 +151,10 @@ body ::-webkit-scrollbar-thumb {
 	top: 10px;
 	right: 10px;
 	padding: 5px 10px 8px 10px;
-	border: 2px solid #919191;
+	border: 2px solid var(--background-element);
 	border-radius: 10px;
-	background-color: #919191;
-	color: #1c1c1c;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 25px;
 	font-weight: 500;
 	z-index: 1;
@@ -192,8 +163,9 @@ body ::-webkit-scrollbar-thumb {
 }
 
 .add-squad:hover{
-	background-color: #262626;
-	color: #919191;
+	border: 2px solid var(--background-element-hover);
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
 }
 
 .squad-name {
@@ -216,8 +188,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 10px 5px 5px 10px;
 	padding: 10px 10px;
 	border-radius: 5px;
-	background-color: #363636;
-	color: #919191;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 20px;
 }
 
@@ -231,9 +203,9 @@ body ::-webkit-scrollbar-thumb {
 	margin: 10px 10px;
 	padding: 3px 0px 5px 0px;
 	border-radius: 5px;
-	background-color: #363636;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 25px;
-	color: #919191;
 	text-align: center;
 }
 
@@ -244,13 +216,11 @@ body ::-webkit-scrollbar-thumb {
 	margin: 0px 10px;
 	padding: 5px;
 	border-radius: 5px;
-	background-color: #363636;
+	background-color: var(--background-fon);
+	color: var(--color-light);
 	font-size: 20px;
-	color: #919191;
 	overflow: auto;
 }
-
-
 
 .squad-user-position-wrapper {
 	position: relative;
@@ -259,7 +229,8 @@ body ::-webkit-scrollbar-thumb {
 	width: calc(50% - 18px);
 	margin: 10px 5px 5px 10px;
 	border-radius: 8px;
-	background-color: #1c1c1c;
+	background-color: var(--background-fon);
+	color: var(--color-light);
 }
 
 .squad-user-position {
@@ -286,8 +257,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: -40px 10px 0px 0px;
 	padding: 2px 10px 5px 10px;
 	border-radius: 5px;
-	background-color: #292929;
-	color: #919191;
+	background-color: var(--background-fon);
+	color: var(--color-light);
 	font-size: 20px;
 	font-weight: 500;
 	cursor: pointer;
@@ -302,8 +273,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 10px 0px;
 	padding: 0px 0px 10px 0px;
 	border-radius: 10px;
-	background-color: #1c1c1c;
-	color: #919191;
+	background-color: var(--background-fon);
+	color: var(--color-light);
 	font-size: 20px;
 	text-align: center;
 	transition: 0.2s;
@@ -318,8 +289,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 10px 10px 10px 10px;
 	padding: 5px 0px;
 	border-radius: 5px;
-	background-color: #292929;
-	color: #919191;
+  background-color: var(--background-fon);
+	color: var(--color-light);
 	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
 	text-align: center;
@@ -328,7 +299,7 @@ body ::-webkit-scrollbar-thumb {
 }
 
 .squad-user-position-row-link:hover {
-	background-color: #343434;
+	background-color: var(--background-fon);
 }
 
 .squad-user-position-row {
@@ -340,8 +311,8 @@ body ::-webkit-scrollbar-thumb {
 	padding: 5px 0px;
 	border: none;
 	border-radius: 5px;
-	background-color: #292929;
-	color: #ffffff;
+	background-color: var(--background-wrapper);
+	color: var(--color-light);
 	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
 	text-align: center;
@@ -350,7 +321,8 @@ body ::-webkit-scrollbar-thumb {
 }
 
 .squad-user-position-row:hover {
-	background-color: #343434;
+	background-color: var(--background-element);
+	color: var(--color-light);
 }
 
 .squad-user-position-row-del {
@@ -373,9 +345,9 @@ body ::-webkit-scrollbar-thumb {
 }
 
 .squad-user-position-row-del:hover {
-	border: 2px solid #a11616;
-	background-color: #1c1c1c;
-	color: #a11616;
+	border: 2px solid var(--background-warning);
+	background-color: var(--background-warning);
+	color: var(--color-light);
 }
 
 .squad-setting {
@@ -384,9 +356,10 @@ body ::-webkit-scrollbar-thumb {
 	z-index: 9;
 	width: 100%;
 	margin: 10px 0px 0px 0px;
-	border-top: 2px solid #363636;
+	border-top: 2px solid var(--background-element);
 	border-radius: 0px 0px 10px 10px;
-	background-color: #262626;
+	background-color: var(--background-wrapper);
+	color: var(--color-light);
 }
 
 .squad-add {
@@ -398,7 +371,7 @@ body ::-webkit-scrollbar-thumb {
 	width: 600px;
 	margin: auto -300px;
 	border-radius: 10px;
-	background-color: #262626;
+	background-color: var(--background-wrapper);
 }
 
 .add-squad-close {
@@ -407,8 +380,8 @@ body ::-webkit-scrollbar-thumb {
 	right: -50px;
 	padding: 5px 12px 9px 12px;
 	border-radius: 5px;
-	background-color: #262626;
-	color: #919191;
+	background-color: var(--background-wrapper);
+	color: var(--color-light);
 	font-weight: 500;
 	font-size: 20px;
 	cursor: pointer;
@@ -449,8 +422,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 10px 10px 0px 10px;
 	padding: 5px 0px;
 	border-radius: 5px;
-	background-color: #363636;
-	color: #919191;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 20px;
 	text-align: center;
 }
@@ -461,8 +434,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 10px 10px 0px 10px;
 	padding: 5px 0px  5px 20px;
 	border-radius: 5px 5px 0px 0px;
-	background-color: #363636;
-	color: #919191;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 20px;
 	text-align: left;
 }
@@ -472,11 +445,11 @@ body ::-webkit-scrollbar-thumb {
 	width: calc(100% - 44px);
 	margin: 0px 10px 0px 10px;
 	padding: 10px;
-	border: 2px solid #363636;
+	border: 2px solid var(--background-element);
 	border-top: none;
 	border-radius:  0px 0px 5px 5px;
-	background-color: #1c1c1c;
-	color: #919191;
+	background-color: var(--background-fon);
+	color: var(--color-light);
 	font-size: 24px;
 	outline: none;
 }
@@ -487,8 +460,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 0px 10px 0px 10px;
 	padding: 5px 0px  5px 20px;
 	border-radius: 5px;
-	background-color: #363636;
-	color: #919191;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 20px;
 	text-align: left;	
 }
@@ -500,7 +473,7 @@ body ::-webkit-scrollbar-thumb {
 	margin: 4px 0px 0px -120px;
 	border: 0px;
 	border-radius: 5px;
-	background-color: #292929;
+	background-color: var(--background-wrapper);
 	cursor: pointer;
 }
 
@@ -510,8 +483,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 4px 5px 0px 10px;
 	padding: 5px 0px 5px 10px;
 	border-radius: 5px;
-	background-color: #363636;
-	color: #919191;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 20px;
 	text-align: left;
 }
@@ -524,8 +497,8 @@ body ::-webkit-scrollbar-thumb {
 	padding: 5px 0px 5px 10px;
 	border: none;
 	border-radius: 5px;
-	background-color: #363636;
-	color: #919191;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 20px;
 	outline: none;
 	cursor: pointer;
@@ -537,8 +510,8 @@ body ::-webkit-scrollbar-thumb {
 	margin: 10px 10px 0px 10px;
 	padding: 5px 0px  5px 20px;
 	border-radius: 5px 5px 0px 0px;
-	background-color: #363636;
-	color: #919191;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-size: 20px;
 	text-align: left;
 }
@@ -549,11 +522,11 @@ body ::-webkit-scrollbar-thumb {
 	margin: 0px 10px 0px 10px;
 	height: 100px;
 	padding: 5px 10px;
-	border: 2px solid #363636;
+	border: 2px solid var(--background-element);
 	border-top: none;
 	border-radius:  0px 0px 5px 5px;
-	background-color: #1c1c1c;
-	color: #919191;
+	background-color: var(--background-fon);
+	color: var(--color-light);
 	font-family: 'Montserrat', sans-serif;
 	font-size: 24px;
 	outline: none;
@@ -564,10 +537,10 @@ body ::-webkit-scrollbar-thumb {
 	float: right;
 	margin: 10px 10px 10px 0px;
 	padding: 10px 20px;
-	border: 2px solid #919191;
+	border: 2px solid var(--background-element);
 	border-radius: 5px;
-	background-color: #919191;
-	color: #1c1c1c;
+	background-color: var(--background-element);
+	color: var(--color-light);
 	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
 	font-weight: 600;
@@ -576,8 +549,9 @@ body ::-webkit-scrollbar-thumb {
 }
 
 .squad-setting-btn:hover {
-	background-color: #262626;
-	color: #919191;
+	border: 2px solid var(--background-element-hover);
+	background-color: var(--background-element-hover);
+	color: var(--color-light);
 }
 
 .squad-setting-del {
@@ -596,6 +570,7 @@ body ::-webkit-scrollbar-thumb {
 }
 
 .squad-setting-del:hover {
-	background-color: #262626;
-	color: #a11616;
+	border: 2px solid var(--background-warning);
+	background-color: var(--background-warning);
+	color: var(--color-light);
 }

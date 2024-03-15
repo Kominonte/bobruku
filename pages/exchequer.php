@@ -123,10 +123,6 @@
 		<?php } ?>
 			
 		</div>
-
-		<form action="../vendor/core.php" method="POST">
-			<button id="auth-btn" type="submit" name="logout-btn"> Выйти </button><br>
-		</form>
 	<?php else: ?>
 	<div id="auth">
 		<p id="welcome-text">Прежде чем увидить снарягу клана вам надо</p><br>

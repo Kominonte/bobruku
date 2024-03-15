@@ -29,30 +29,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
-}
-
-#background-dark {
-	top: 0px;
-	left: 0px;
-	display: none;
-	background: rgba(10, 10, 10, 0.8);
-	width: 1000%;
-	height: 1000%;
-	position: absolute;
-	z-index: 3;
-	animation-name: open;
-	animation-duration: 0.3s;
-}
-
-@keyframes open {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-  }
-  100% {
-    opacity: 1;
-    visibility: visible;
-  }
+	background-color: var(--background-fon);
 }
 
 #auth {
@@ -62,7 +39,7 @@ body {
 	width: 800px;
 	height: 170px;
 	margin: 0px 0px 0px -400px;
-	background-color: var(--background-wrapper);
+	background: #1c1c1c;
 	border-radius: 20px;
 }
 
@@ -104,8 +81,28 @@ body {
 	right: 0;	
 	width: 100%;
 	height: 70px;
+	background-color: #1c1c1c;
+	z-index: 2;
+
+}
+
+#wrapper {
+	position: relative;
+	width: 1240px;
+	margin: 0px auto;
+}
+
+#clan-img {
+	width: 1240px;
+	margin: 100px auto 10px auto;
+	border-radius: 20px;
+}
+
+#main {
+	height: 1000px;
+	margin: 100px auto;
+	border-radius: 20px;
 	background-color: var(--background-wrapper);
-	z-index: 10;
 }
 
 .menu-element {
@@ -113,7 +110,7 @@ body {
 	margin: 13px 10px;
 	padding: 10px;
 	border-radius: 10px;
-	color: var(--color-light);
+	color: #ffffff;
 	font-size: 18px;
 	font-weight: 600;
 	text-align: center;
@@ -123,8 +120,8 @@ body {
 }
 
 .menu-element:hover {
-	background-color: var(--background-element-hover);
-	color: #ffffff;
+	background-color: #ffffff;
+	color: #1c1c1c;
 }
 
 #account {
@@ -140,23 +137,8 @@ body {
 	font-size: 40px;
 	cursor: pointer;
 	transition: 0.3s;
-	text-decoration: none;
 }
 
 #name:hover {
-	transform: scale(1.03);
-}
-
-#menu-mail {
-	width: 32px;
-	margin: 0px 0px -20px 0px;
-	padding: 10px 15px 10px 15px;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: 0.2s;
-}
-
-#menu-mail:hover {
-	background-color: var(--background-element-hover);
-	transform: scale(1.05);
+	transform: scale(1.1);
 }

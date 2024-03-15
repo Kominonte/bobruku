@@ -640,6 +640,9 @@
 			</div>
 			
 		</div>
+		<form action="/vendor/core.php" method="POST">
+			<button id="auth-btn" type="submit" name="logout-btn"> Выйти </button><br>
+		</form>
 	</div>
 	<script type="text/javascript"  src="/libs/jquery-3.6.1.min.js"></script>
 	<script type="text/javascript"  src="/js/main.js"></script>

@@ -1,6 +1,6 @@
 <?php 
-	require_once("vendor/connect.php");
-	require_once("vendor/core.php");
+	require_once("../vendor/connect.php");
+	require_once("../vendor/core.php");
 ?>
 
 <!DOCTYPE html>
@@ -9,23 +9,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/png" sizes="128x128" href="assets/logo/logo.jpeg">	
-	<link rel='stylesheet' type='text/css' href='css/index.css'>
-	<link rel='stylesheet' type='text/css' href='css/menu.css'>
+	<link rel='stylesheet' type='text/css' href='/css/mail.css'>
+	<link rel='stylesheet' type='text/css' href='/css/menu.css'>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-	<title>King and Clown</title>
+	<title>Почта</title>
 </head>
 <body>
 
-	<?php if($user): require_once("includs/menu.php");?>
+	<?php if($user): require_once("../includs/menu.php");?>
 
 	<div id="wrapper">
-		<img id="clan-img" src="assets/klan.png">
 
 		<div id="main">
-			<label id="union-label">Союзы</label>
-			<!-- <img id="clan-img" src="https://cdn.stalcraftclan.com/img/icons/factions/duty.webp"> -->
+			
 		</div>
 	</div>
 	<?php else: ?>

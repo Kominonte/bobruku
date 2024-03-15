@@ -576,7 +576,7 @@ if(isset($postData['del-user-squad-btn'])){
 
 	R::store($squadDel);
 
-	$userDeleteSquad = R::findOne('user', 'id = ?', array($postData['add-user-squad-id']));
+	$userDeleteSquad = R::findOne('user', 'id = ?', array($postData['del-user-squad-id']));
 
 	$userDeleteSquad->squad = 0;
 	R::store($userDeleteSquad);
